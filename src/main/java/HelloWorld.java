@@ -1,12 +1,14 @@
 import io.javalin.Javalin;
+import io.javalin.http.staticfiles.Location;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
 public class HelloWorld {
     public static void main(String[] args) {
-        Javalin app = Javalin.create().start(8080);
-        app.get("/", ctx -> ctx.result("Ich brauch dringend a Glühmopped"));
+        Javalin app = Javalin.create(config -> {
+            config.addStaticFiles("/public", Location.CLASSPATH);
+        }).start(8080);
         app.get("/test", ctx -> ctx.html("<h1> Servus </h1>"));
 
         app.get("/project1", ctx -> {

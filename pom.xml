@@ -22,7 +22,11 @@
             <version>3.0.12.RELEASE</version>
         </dependency>
 
-
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-simple</artifactId>
+            <version>1.8.0-beta4</version>
+        </dependency>
     </dependencies>
 
     <properties>
