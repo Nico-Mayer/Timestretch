@@ -20,5 +20,9 @@ public class HelloWorld {
             map.put("mylist",y);
             ctx.render("/template.html", map);
         });
+
+        app.post("/changelog", ctx -> {
+            ctx.html("Success");
+        });
     }
 }
