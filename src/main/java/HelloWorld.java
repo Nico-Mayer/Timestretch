@@ -2,8 +2,11 @@ import io.javalin.Javalin;
 import io.javalin.http.staticfiles.Location;
 
 import java.sql.*;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Date;
 
 public class HelloWorld {
     static String url = "jdbc:mysql://sql11.freesqldatabase.com:3306/sql11450649";
@@ -46,12 +49,20 @@ public class HelloWorld {
             String name = ctx.formParam("feature-name");
             String descri = ctx.formParam("feature-description");
             String kuerzel = ctx.formParam("kuerzel");
-            ctx.html(name + "<br>" + descri + "<br>" + kuerzel + "<br>");
-            PreparedStatement psmt = conn.prepareStatement("INSERT INTO `CHANGE_LOG` VALUES(0,?,?,?)");
+            DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+            Date date = new Date();
+            String currentDate = dateFormat.format(date);
+            PreparedStatement psmt = conn.prepareStatement("INSERT INTO `CHANGE_LOG` VALUES(0,?,?,?,?)");
             psmt.setString(1, name);
             psmt.setString(2, descri);
             psmt.setString(3, kuerzel);
+            psmt.setString(4, currentDate);
             psmt.executeUpdate();
+            ctx.redirect("/", 200);
+            //ctx.html(name + "<br>" + descri + "<br>" + kuerzel + "<br>");
+        });
+        app.get("/changelogList", ctx ->{
+
         });
     }
 }
