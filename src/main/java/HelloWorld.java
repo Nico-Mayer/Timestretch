@@ -58,7 +58,7 @@ public class HelloWorld {
             psmt.setString(3, kuerzel);
             psmt.setString(4, currentDate);
             psmt.executeUpdate();
-            ctx.redirect("/", 200);
+            ctx.redirect("/index.html");
             //ctx.html(name + "<br>" + descri + "<br>" + kuerzel + "<br>");
         });
         app.get("/changelogList", ctx ->{
