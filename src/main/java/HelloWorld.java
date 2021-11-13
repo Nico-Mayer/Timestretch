@@ -10,12 +10,13 @@ public class HelloWorld {
     static String user = "sql11450649";
     static String password = "b8XJHtWxnq";
     static Statement stmt = null;
+    static Connection conn = null;
 
     public static void main(String[] args) {
         // DATENBANK CONNECTION
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            Connection conn = DriverManager.getConnection(url, user,password);
+            conn = DriverManager.getConnection(url, user,password);
             System.out.println("Connection Succsessful");
             stmt = conn.createStatement();
 
@@ -28,7 +29,7 @@ public class HelloWorld {
         // ROUTES
         Javalin app = Javalin.create(config -> {
             config.addStaticFiles("/public", Location.CLASSPATH);
-        }).start(8080);
+        }).start(8000);
         app.get("/test", ctx -> ctx.html("<h1> Servus </h1>"));
 
         app.get("/project1", ctx -> {
@@ -41,8 +42,16 @@ public class HelloWorld {
             ctx.render("/template.html", map);
         });
         app.post("/changelog", ctx -> {
-            ctx.html("Success");
-            stmt.executeUpdate("INSERT INTO CHANGE_LOG VALUES (0, 'TEST', 'TESTCON', 'NM')");
+
+            String name = ctx.formParam("feature-name");
+            String descri = ctx.formParam("feature-description");
+            String kuerzel = ctx.formParam("kuerzel");
+            ctx.html(name + "<br>" + descri + "<br>" + kuerzel + "<br>");
+            PreparedStatement psmt = conn.prepareStatement("INSERT INTO `CHANGE_LOG` VALUES(0,?,?,?)");
+            psmt.setString(1, name);
+            psmt.setString(2, descri);
+            psmt.setString(3, kuerzel);
+            psmt.executeUpdate();
         });
     }
 }

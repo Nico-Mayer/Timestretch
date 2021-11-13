@@ -13,7 +13,7 @@
 <form method="post" action="/changelog">
     <div class="mb-3">
         <label for="feature-name" class="form-label">Feature Name</label>
-        <input type="text" class="form-control" id="feature-name">
+        <input type="text" class="form-control" id="feature-name" name="feature-name">
     </div>
     <div class="mb-3">
         <label for="feature-description" class="form-label">Description</label>
@@ -22,9 +22,9 @@
     <div class="mb-3 form-check">
         <label for="kuerzel">Kürzel</label>
         <select name="kuerzel" id="kuerzel" class="form-select">
-            <option value="0">NM</option>
-            <option value="1">TL</option>
-            <option value="2">RS</option>
+            <option value="NM">NM</option>
+            <option value="TL">TL</option>
+            <option value="RS">RS</option>
         </select>
     </div>
     <button type="submit" class="btn btn-primary">Submit</button>
