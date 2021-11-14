@@ -5,6 +5,7 @@ import io.javalin.http.staticfiles.Location;
 import java.sql.*;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.*;
 import java.util.Date;
 
 public class HelloWorld {
@@ -46,17 +47,22 @@ public class HelloWorld {
             psmt.setString(3, kuerzel);
             psmt.setString(4, currentDate);
             psmt.executeUpdate();
-            ctx.redirect("/index.html");
-            //ctx.html(name + "<br>" + descri + "<br>" + kuerzel + "<br>");
+            ctx.redirect("/changeLogList");
         });
-        app.get("/changelogList", ctx ->{
-            String sql = "SELECT NAME FROM CHANGE_LOG";
+        app.get("/changeLogList", ctx ->{
+            String sql = "SELECT * FROM CHANGE_LOG";
             Statement st = conn.createStatement();
             ResultSet rs = st.executeQuery(sql);
+
+            HashMap<String, ArrayList<String>> Map = new HashMap<String, ArrayList<String>>() {};
+            ArrayList<String> namen = new ArrayList<>();
+
             while(rs.next())
             {
-                System.out.println(rs.getString(1));
+                namen.add(rs.getString(2));
             }
+            Map.put("mylist", namen);
+            ctx.render("/templates/changeLogList.html",Map);
         });
     }
 }
