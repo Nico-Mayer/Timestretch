@@ -1,3 +1,4 @@
+import com.mysql.cj.xdevapi.Table;
 import io.javalin.Javalin;
 import io.javalin.http.staticfiles.Location;
 
@@ -62,6 +63,14 @@ public class HelloWorld {
             //ctx.html(name + "<br>" + descri + "<br>" + kuerzel + "<br>");
         });
         app.get("/changelogList", ctx ->{
+            String sql = "SELECT NAME FROM CHANGE_LOG";
+
+            Statement st = conn.createStatement();
+            ResultSet rs = st.executeQuery(sql);
+            while(rs.next())
+            {
+                System.out.println(rs.getString(1));
+            }
 
         });
     }
