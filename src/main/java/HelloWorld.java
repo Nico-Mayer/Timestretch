@@ -5,8 +5,6 @@ import io.javalin.http.staticfiles.Location;
 import java.sql.*;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Date;
 
 public class HelloWorld {
@@ -34,19 +32,8 @@ public class HelloWorld {
         Javalin app = Javalin.create(config -> {
             config.addStaticFiles("/public", Location.CLASSPATH);
         }).start(8000);
-        app.get("/test", ctx -> ctx.html("<h1> Servus </h1>"));
 
-        app.get("/project1", ctx -> {
-            HashMap<String, ArrayList<String>> map = new HashMap<String, ArrayList<String>>() {};
-            ArrayList<String> y = new ArrayList<>();
-            for(int i = 0; i<50; i++){
-                y.add(Integer.toString(i));
-            }
-            map.put("mylist",y);
-            ctx.render("/template.html", map);
-        });
         app.post("/changelog", ctx -> {
-
             String name = ctx.formParam("feature-name");
             String descri = ctx.formParam("feature-description");
             String kuerzel = ctx.formParam("kuerzel");
@@ -64,14 +51,12 @@ public class HelloWorld {
         });
         app.get("/changelogList", ctx ->{
             String sql = "SELECT NAME FROM CHANGE_LOG";
-
             Statement st = conn.createStatement();
             ResultSet rs = st.executeQuery(sql);
             while(rs.next())
             {
                 System.out.println(rs.getString(1));
             }
-
         });
     }
 }
