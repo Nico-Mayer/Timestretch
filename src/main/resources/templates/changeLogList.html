@@ -2,17 +2,30 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <title>Change Log</title>
 </head>
 <body>
-<table>
-    <tr th:each="changeEntry : ${mylist}">
-        <td th:text="${changeEntry.id}"></td>
-        <td th:text="${changeEntry.name}"></td>
-        <td th:text="${changeEntry.beschreibung}"></td>
-        <td th:text="${changeEntry.kuerzel}"></td>
-        <td th:text="${changeEntry.datum}"></td>
+<table class="table table-dark">
+    <thead>
+    <tr>
+        <th scope="col">ID</th>
+        <th scope="col">NAME</th>
+        <th scope="col">BESCHREIBUNG</th>
+        <th scope="col">BEARBEITER</th>
+        <th scope="col">DATUM</th>
     </tr>
+    </thead>
+    <tbody>
+        <tr th:each="changeEntry : ${mylist}">
+            <th scope="row" th:text="${changeEntry.id}"></th>
+            <td th:text="${changeEntry.name}"></td>
+            <td th:text="${changeEntry.beschreibung}"></td>
+            <td th:text="${changeEntry.kuerzel}"></td>
+            <td th:text="${changeEntry.datum}"></td>
+        </tr>
+    </tbody>
+
 </table>
 </body>
 </html>

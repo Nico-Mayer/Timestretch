@@ -13,11 +13,11 @@
 <form method="post" action="/changelog">
     <div class="mb-3">
         <label for="feature-name" class="form-label">Feature Name</label>
-        <input type="text" class="form-control" id="feature-name" name="feature-name">
+        <input type="text" class="form-control" id="feature-name" name="feature-name" maxlength="60">
     </div>
     <div class="mb-3">
         <label for="feature-description" class="form-label">Description</label>
-        <textarea name="feature-description" id="feature-description" cols="30" rows="10" class="form-control" placeholder="Leave a comment here"></textarea>
+        <textarea name="feature-description" id="feature-description" cols="30" rows="10" class="form-control" placeholder="Leave a comment here" maxlength="400"></textarea>
     </div>
     <div class="mb-3 form-check">
         <label for="kuerzel">Kürzel</label>

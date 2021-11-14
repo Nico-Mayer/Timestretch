@@ -61,11 +61,8 @@ public class HelloWorld {
             while(rs.next())
             {
                 changeEntrys.add(new ChangeEntry(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5)));
-                System.out.println(rs.getString(2));
             }
-
             Map.put("mylist", changeEntrys);
-
             ctx.render("/templates/changeLogList.html",Map);
         });
     }
