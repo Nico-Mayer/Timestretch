@@ -17,7 +17,7 @@ public class HelloWorld {
     public static void main(String[] args) {
         // DATENBANK CONNECTION
         try {
-            Class.forName("com.mysql.jdbc.Driver");
+            Class.forName("com.mysql.cj.jdbc.Driver");
             conn = DriverManager.getConnection(url, user,password);
             System.out.println("Connection Succsessful");
             stmt = conn.createStatement();
@@ -31,7 +31,7 @@ public class HelloWorld {
         // ROUTES
         Javalin app = Javalin.create(config -> {
             config.addStaticFiles("/public", Location.CLASSPATH);
-        }).start(8000);
+        }).start(8080);
 
         app.post("/changelog", ctx -> {
             String name = ctx.formParam("feature-name");

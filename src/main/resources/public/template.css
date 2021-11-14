@@ -9,8 +9,11 @@ a {
 }
 
 #sidebar {
-  z-index: 2;
-  position: absolute;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  overflow-x: hidden;
+  position: fixed;
   width: 280px;
   height: 100%;
   overflow-y: hidden;
