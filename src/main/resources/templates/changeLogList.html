@@ -5,8 +5,14 @@
     <title>Change Log</title>
 </head>
 <body>
-<ul th:each="list : ${mylist}">
-    <li th:text="${list}"></li>
-</ul>
+<table>
+    <tr th:each="changeEntry : ${mylist}">
+        <td th:text="${changeEntry.id}"></td>
+        <td th:text="${changeEntry.name}"></td>
+        <td th:text="${changeEntry.beschreibung}"></td>
+        <td th:text="${changeEntry.kuerzel}"></td>
+        <td th:text="${changeEntry.datum}"></td>
+    </tr>
+</table>
 </body>
 </html>

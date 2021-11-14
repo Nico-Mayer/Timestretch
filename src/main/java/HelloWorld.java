@@ -47,6 +47,7 @@ public class HelloWorld {
             psmt.setString(3, kuerzel);
             psmt.setString(4, currentDate);
             psmt.executeUpdate();
+            System.out.println("Added Entry to Database");
             ctx.redirect("/changeLogList");
         });
         app.get("/changeLogList", ctx ->{
@@ -54,16 +55,20 @@ public class HelloWorld {
             Statement st = conn.createStatement();
             ResultSet rs = st.executeQuery(sql);
 
-            HashMap<String, ArrayList<String>> Map = new HashMap<String, ArrayList<String>>() {};
-            ArrayList<String> namen = new ArrayList<>();
+            HashMap<String, ArrayList<ChangeEntry>> Map = new HashMap<>() {};
+            ArrayList<ChangeEntry> changeEntrys = new ArrayList<ChangeEntry>();
 
             while(rs.next())
             {
-                namen.add(rs.getString(2));
+                changeEntrys.add(new ChangeEntry(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5)));
+                System.out.println(rs.getString(2));
             }
-            Map.put("mylist", namen);
+
+            Map.put("mylist", changeEntrys);
+
             ctx.render("/templates/changeLogList.html",Map);
         });
     }
 }
+
 
