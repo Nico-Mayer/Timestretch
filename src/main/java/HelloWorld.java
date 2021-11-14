@@ -1,4 +1,3 @@
-import com.mysql.cj.xdevapi.Table;
 import io.javalin.Javalin;
 import io.javalin.http.staticfiles.Location;
 
@@ -63,7 +62,7 @@ public class HelloWorld {
                 changeEntrys.add(new ChangeEntry(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5)));
             }
             Map.put("mylist", changeEntrys);
-            ctx.render("/templates/changeLogList.html",Map);
+            ctx.render("/public/changeLogList.html",Map);
         });
     }
 }
