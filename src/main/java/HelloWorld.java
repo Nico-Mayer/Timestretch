@@ -50,7 +50,7 @@ public class HelloWorld {
             ctx.redirect("/changeLogList");
         });
         app.get("/changeLogList", ctx ->{
-            String sql = "SELECT * FROM CHANGE_LOG";
+            String sql = "SELECT * FROM CHANGE_LOG ORDER BY CHANGE_ID DESC";
             Statement st = conn.createStatement();
             ResultSet rs = st.executeQuery(sql);
 
