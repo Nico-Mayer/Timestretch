@@ -4,10 +4,7 @@ html * {
   font-family: "Sora", sans-serif;
 }
 
-a {
-  color: antiquewhite;
-  text-decoration: none;
-}
+
 
 #sidebar {
   z-index: 1;
@@ -32,13 +29,10 @@ a {
   height: 100%;
 }
 
-
-.list-group-item {
-}
-
 #logo {
   width: 100%;
-
+  padding-bottom: 16px;
+  padding-top: 8px;
   display: flex;
   align-items: center;
   justify-content: left;
@@ -50,4 +44,18 @@ a {
   width: 21px;
   height: 21px;
   margin-right: 10px;
+}
+
+#new-entry-btn-container{
+  padding-bottom: 12px;
+}
+
+.active{
+  background-color: #0d6efd;
+  border-radius: 0.25rem;
+}
+
+.nav-item{
+  width: 248px;
+  height: 40px;
 }
