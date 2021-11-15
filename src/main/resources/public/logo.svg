@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="100%" height="100%" viewBox="0 0 1000 1000" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
+    <g transform="matrix(1.22637,0,0,1.0437,-109.842,-43.6953)">
+        <path d="M904.98,179.449C904.98,142.959 892.644,107.965 870.685,82.163C848.727,56.361 818.945,41.866 787.891,41.866L206.655,41.866C175.601,41.866 145.819,56.361 123.861,82.163C101.903,107.965 89.566,142.959 89.566,179.449L89.566,862.417C89.566,898.906 101.903,933.901 123.861,959.703C145.819,985.505 175.601,1000 206.655,1000L787.891,1000C818.945,1000 848.727,985.505 870.685,959.703C892.644,933.901 904.98,898.906 904.98,862.417L904.98,179.449Z" style="fill:white;"/>
+    </g>
+    <g transform="matrix(1.09967,0,0,1.09967,43.3238,-87.6611)">
+        <text x="87.62px" y="737.367px" style="font-family:'AppleSymbols', 'Apple Symbols';font-size:754.418px;fill:rgb(72,72,72);">TS</text>
+    </g>
+</svg>
