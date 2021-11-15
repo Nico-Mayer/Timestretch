@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
 <head>
+    <link rel="icon" type="image/svg+xml" href="logo.svg">
     <!-- Required meta tags -->
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -21,16 +22,23 @@
     <!-- SIDEBAR -->
     <div id="sidebar" class="bg-dark">
         <div id="logo">
-            <img id="logo-svg" src="logo.svg" width="40" height="40">
-            <span class="fs-4 text-light">Timestretch</span>
+            <a href="index.html" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+                <img id="logo-svg" src="logo.svg" width="40" height="40">
+                <span class="fs-4 text-light">Timestretch</span>
+            </a>
         </div>
         <hr class="text-light">
         <ul class="list-group list-group-flush">
-            <li class="nav-item"><a href="index.html" class="nav-link text-white"><img src="icons/home_white_24dp.svg" id="icon-svg">Home</a></li>
-            <li class="nav-item"><a class="nav-link text-white" href="#"><img src="icons/folder_white_24dp.svg" id="icon-svg">Projekt 1</a></li>
-            <li class="nav-item"><a class="nav-link text-white" href="#"><img src="icons/folder_white_24dp.svg" id="icon-svg">Projekt 2</a></li>
-            <li class="nav-item"><a class="nav-link text-white active text-white" href="changeLogList"><img src="icons/code_white_24dp.svg" id="icon-svg">Changelog</a></li>
+            <li class="nav-item"><a href="index.html" class="nav-link text-white"><img src="icons/home_white_24dp.svg" class="icon-svg" alt="">Home</a></li>
+            <li class="nav-item"><a class="nav-link text-white" href="#"><img src="icons/folder_white_24dp.svg" class="icon-svg" alt="">Projekt 1</a></li>
+            <li class="nav-item"><a class="nav-link text-white" href="#"><img src="icons/folder_white_24dp.svg" class="icon-svg" alt="">Projekt 2</a></li>
+            <li class="nav-item"><a class="nav-link text-white active " href="changeLogList"><img src="icons/code_white_24dp.svg" class="icon-svg" alt="">Changelog</a></li>
         </ul>
+
+        <div class="align-self-end text-light" id="user">
+            <hr class="text-light">
+            <a href="#" class="text-decoration-none text-light"><img src="icons/account_circle_white_24dp.svg" class="icon-svg">User</a>
+        </div>
     </div>
 
 
