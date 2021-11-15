@@ -7,7 +7,7 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.Date;
 
-public class HelloWorld {
+public class App {
     static String url = "jdbc:mysql://sql11.freesqldatabase.com:3306/sql11450649";
     static String user = "sql11450649";
     static String password = "b8XJHtWxnq";
