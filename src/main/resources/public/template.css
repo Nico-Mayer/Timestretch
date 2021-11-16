@@ -41,9 +41,7 @@ html * {
   margin-right: 10px;
 }
 
-#new-entry-btn-container{
-  padding-bottom: 12px;
-}
+
 #user{
   width: 100%;
   margin-top: auto;
@@ -59,10 +57,10 @@ html * {
   height: 50px;
 }
 
-#time-display-container{
+#header-content-container{
   min-height: 65px !important;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
 }
 
 #time-display{
