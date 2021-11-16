@@ -67,7 +67,7 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr th:each="changeEntry : ${changeEntryList}">
+                    <tr th:each="changeEntry : ${changeLogEntrys}">
                         <th scope="row" th:text="${changeEntry.id}"></th>
                         <td th:text="${changeEntry.name}"></td>
                         <td th:text="${changeEntry.beschreibung}"></td>

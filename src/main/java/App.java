@@ -54,13 +54,13 @@ public class App {
             Statement st = conn.createStatement();
             ResultSet rs = st.executeQuery(sql);
             HashMap<String, ArrayList<ChangeEntry>> Map = new HashMap<>();
-            ArrayList<ChangeEntry> changeEntrys = new ArrayList<ChangeEntry>();
+            ArrayList<ChangeEntry> changeLogEntrys = new ArrayList<ChangeEntry>();
 
             while(rs.next())
             {
-                changeEntrys.add(new ChangeEntry(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5)));
+                changeLogEntrys.add(new ChangeEntry(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5)));
             }
-            Map.put("changeEntryList", changeEntrys);
+            Map.put("changeLogEntrys", changeLogEntrys);
             ctx.render("/public/changeLogList.html",Map);
         });
 
