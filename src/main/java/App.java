@@ -53,16 +53,34 @@ public class App {
             String sql = "SELECT * FROM CHANGE_LOG ORDER BY CHANGE_ID DESC";
             Statement st = conn.createStatement();
             ResultSet rs = st.executeQuery(sql);
-
-            HashMap<String, ArrayList<ChangeEntry>> Map = new HashMap<>() {};
+            HashMap<String, ArrayList<ChangeEntry>> Map = new HashMap<>();
             ArrayList<ChangeEntry> changeEntrys = new ArrayList<ChangeEntry>();
 
             while(rs.next())
             {
                 changeEntrys.add(new ChangeEntry(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5)));
             }
-            Map.put("mylist", changeEntrys);
+            Map.put("changeEntryList", changeEntrys);
             ctx.render("/public/changeLogList.html",Map);
+        });
+
+        app.get("/project", ctx ->{
+
+            String sql = "SELECT * FROM PROJEKTE ORDER BY PROJEKT_ID";
+            Statement st = conn.createStatement();
+            ResultSet rs = st.executeQuery(sql);
+
+            HashMap<String, ArrayList<Project>> Map = new HashMap<>();
+            ArrayList<Project> projectEntrys = new ArrayList<>();
+
+            while (rs.next()){
+                projectEntrys.add(new Project(rs.getInt(1), rs.getString(2), rs.getInt(3)));
+            }
+            Map.put("projectEntrys", projectEntrys);
+
+            System.out.println(projectEntrys.size());
+
+           ctx.render("/public/project.html", Map);
         });
     }
 }

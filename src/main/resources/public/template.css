@@ -60,10 +60,10 @@ html * {
 }
 
 #time-display-container{
-  height: 65px;
+  min-height: 65px !important;
   display: flex;
   justify-content: center;
-
+  background-color: chartreuse;
 }
 
 #time-display{
@@ -74,4 +74,20 @@ html * {
   height: 50%;
   border: solid 1px black;
   border-radius: 0.25rem;
+  background-color: cadetblue;
 }
+
+#main-content-container{
+  flex-grow: 1;
+}
+#task-container{
+  width: 100%;
+  background-color: aqua;
+}
+
+#done-container{
+  background-color: aquamarine;
+  width: 200px;
+}
+
+
