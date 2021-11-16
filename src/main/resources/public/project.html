@@ -29,8 +29,8 @@
         </div>
         <hr class="text-light">
         <ul class="list-group list-group-flush">
-            <li class="nav-item"><a href="index.html" class="nav-link active text-white"><img src="icons/home_white_24dp.svg" class="icon-svg" alt="">Home</a></li>
-            <li class="nav-item"><a class="nav-link text-white" href="project.html"><img src="icons/folder_white_24dp.svg" class="icon-svg" alt="">Projekt 1</a></li>
+            <li class="nav-item"><a href="index.html" class="nav-link text-white"><img src="icons/home_white_24dp.svg" class="icon-svg" alt="">Home</a></li>
+            <li class="nav-item"><a class="nav-link text-white active" href="project.html"><img src="icons/folder_white_24dp.svg" class="icon-svg" alt="">Projekt 1</a></li>
             <li class="nav-item"><a class="nav-link text-white" href="#"><img src="icons/folder_white_24dp.svg" class="icon-svg" alt="">Projekt 2</a></li>
             <li class="nav-item"><a class="nav-link text-white" href="changeLogList"><img src="icons/code_white_24dp.svg" class="icon-svg" alt="">Changelog</a></li>
         </ul>
@@ -42,12 +42,23 @@
     </div>
 
     <!-- CONTENT -->
-    <div id="content" class="bg-light">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-lg-12"></div>
-            </div>
+    <div id="content" class="d-flex flex-column bg-light">
+        <div id="time-display-container">
+            <div id="time-display" class="text-dark">00:00:00.000</div>
         </div>
+
+        <div id="main-content-container" class="d-flex flex-row" style="flex-grow: 1">
+            <div id="task-container" class="d-flex flex-column" style="width: 100%; background-color: aquamarine; margin: 0">
+                <div>
+                    Task1
+                </div>
+                <div>
+                    Task2
+                </div>
+            </div>
+            <div id="done-container" style="width: 200px; background-color: aqua">Done</div>
+        </div>
+
     </div>
 </div>
 </body>

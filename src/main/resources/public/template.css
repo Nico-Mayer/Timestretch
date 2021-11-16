@@ -58,3 +58,20 @@ html * {
   width: 248px;
   height: 50px;
 }
+
+#time-display-container{
+  height: 65px;
+  display: flex;
+  justify-content: center;
+
+}
+
+#time-display{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 250px;
+  height: 50%;
+  border: solid 1px black;
+  border-radius: 0.25rem;
+}
