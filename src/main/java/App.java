@@ -77,10 +77,22 @@ public class App {
                 taskEntrys.add(new Task(rs.getInt(1), rs.getInt(2), rs.getString(3),rs.getString(4), rs.getBoolean(5)));
             }
             Map.put("taskEntrys", taskEntrys);
-
-            System.out.println(taskEntrys.size());
-
            ctx.render("/public/project.html", Map);
+        });
+
+        app.post("/addNewTask", ctx ->{
+            int projectID = 1;
+            String name = "test";
+            String description = "";
+           PreparedStatement stmt = conn.prepareStatement("INSERT INTO `TASKS` VALUES (0,?,?,?,?)");
+           stmt.setInt(1,projectID);
+           stmt.setString(2, name);
+           stmt.setString(3,description);
+           stmt.setBoolean(4, false);
+           stmt.executeUpdate();
+            System.out.println("Added New Task");
+           ctx.redirect("/project");
+
         });
     }
 }

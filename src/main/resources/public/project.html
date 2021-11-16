@@ -45,12 +45,15 @@
     <div id="content" class="d-flex flex-column bg-light">
         <div id="header-content-container">
             <div id="new-entry-btn-container">
-                <a class="btn btn-primary" href="#">
-                    <img src="icons/add_white_24dp.svg" id="icon-svg">
-                    New Task
-                </a>
+                <form action="/addNewTask" method="post">
+                    <button type="submit" name="addTask" class="btn btn-primary" value="New Task">
+                        <img src="icons/add_white_24dp.svg">
+                        New Task
+                    </button>
+                </form>
             </div>
             <div id="time-display" class="text-light bg-dark">00:00:00.000</div>
+            <div style="width: 130px"></div>
         </div>
 
         <div id="main-content-container" class="d-flex flex-row">
