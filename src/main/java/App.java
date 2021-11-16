@@ -33,7 +33,7 @@ public class App {
             config.addStaticFiles("/public", Location.CLASSPATH);
         }).start(8080);
 
-        app.post("/changelog", ctx -> {
+        app.post("/changelogPost", ctx -> {
             String name = ctx.formParam("feature-name");
             String descri = ctx.formParam("feature-description");
             String kuerzel = ctx.formParam("kuerzel");
@@ -54,14 +54,14 @@ public class App {
             Statement st = conn.createStatement();
             ResultSet rs = st.executeQuery(sql);
             HashMap<String, ArrayList<ChangeEntry>> Map = new HashMap<>();
-            ArrayList<ChangeEntry> changeLogEntrys = new ArrayList<ChangeEntry>();
+            ArrayList<ChangeEntry> changelogEntrys = new ArrayList<ChangeEntry>();
 
             while(rs.next())
             {
-                changeLogEntrys.add(new ChangeEntry(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5)));
+                changelogEntrys.add(new ChangeEntry(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5)));
             }
-            Map.put("changeLogEntrys", changeLogEntrys);
-            ctx.render("/public/changeLogList.html",Map);
+            Map.put("changelogEntrys", changelogEntrys);
+            ctx.render("/public/changelog.html",Map);
         });
 
         app.get("/project", ctx ->{

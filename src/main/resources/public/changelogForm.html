@@ -45,38 +45,25 @@
     <!-- CONTENT -->
     <div id="content" class="bg-light">
         <div class="container-fluid">
-            <div class="row">
-                <div id="new-entry-btn-container">
-                        <a class="btn btn-primary" href="/changelogForm.html">
-                            <img src="icons/add_white_24dp.svg" id="icon-svg">
-                            New Entry
-                        </a>
+            <form method="post" action="/changelogPost">
+                <div class="mb-3">
+                    <label for="feature-name" class="form-label">Feature Name</label>
+                    <input type="text" class="form-control" id="feature-name" name="feature-name" maxlength="60">
                 </div>
-
-            </div>
-            <div class="row">
-                <body>
-                <table class="table table-light table-hover≈">
-                    <thead>
-                    <tr>
-                        <th scope="col">ID</th>
-                        <th scope="col">NAME</th>
-                        <th scope="col">BESCHREIBUNG</th>
-                        <th scope="col">BEARBEITER</th>
-                        <th scope="col">DATUM</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr th:each="changeEntry : ${changelogEntrys}">
-                        <th scope="row" th:text="${changeEntry.id}"></th>
-                        <td th:text="${changeEntry.name}"></td>
-                        <td th:text="${changeEntry.beschreibung}"></td>
-                        <td th:text="${changeEntry.kuerzel}"></td>
-                        <td th:text="${changeEntry.datum}"></td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
+                <div class="mb-3">
+                    <label for="feature-description" class="form-label">Description</label>
+                    <textarea name="feature-description" id="feature-description" cols="30" rows="10" class="form-control" placeholder="Leave a comment here" maxlength="400"></textarea>
+                </div>
+                <div class="mb-3 form-check">
+                    <label for="kuerzel">Kürzel</label>
+                    <select name="kuerzel" id="kuerzel" class="form-select">
+                        <option value="NM">NM</option>
+                        <option value="TL">TL</option>
+                        <option value="RS">RS</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
         </div>
     </div>
 </div>
