@@ -44,14 +44,14 @@
     <!-- CONTENT -->
     <div id="content" class="d-flex flex-column bg-light">
         <div id="time-display-container">
-            <div id="time-display" class="text-dark">00:00:00.000</div>
+            <div id="time-display" class="text-light bg-dark">00:00:00.000</div>
         </div>
 
         <div id="main-content-container" class="d-flex flex-row">
             <div id="task-container" class="d-flex flex-column">
                 <ul>
-                    <div th:each="project : ${projectEntrys}">
-                        <p th:text="${project.id}"></p>
+                    <div  id="task"  class="bg-dark text-light" th:each="task : ${taskEntrys}">
+                        <p th:text="${task.taskID}"></p>
                     </div>
                 </ul>
             </div>

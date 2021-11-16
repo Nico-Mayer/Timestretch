@@ -66,19 +66,19 @@ public class App {
 
         app.get("/project", ctx ->{
 
-            String sql = "SELECT * FROM PROJEKTE ORDER BY PROJEKT_ID";
+            String sql = "SELECT * FROM TASKS ORDER BY TASK_ID";
             Statement st = conn.createStatement();
             ResultSet rs = st.executeQuery(sql);
 
-            HashMap<String, ArrayList<Project>> Map = new HashMap<>();
-            ArrayList<Project> projectEntrys = new ArrayList<>();
+            HashMap<String, ArrayList<Task>> Map = new HashMap<>();
+            ArrayList<Task> taskEntrys = new ArrayList<>();
 
             while (rs.next()){
-                projectEntrys.add(new Project(rs.getInt(1), rs.getString(2), rs.getInt(3)));
+                taskEntrys.add(new Task(rs.getInt(1), rs.getInt(2), rs.getString(3),rs.getString(4), rs.getBoolean(5)));
             }
-            Map.put("projectEntrys", projectEntrys);
+            Map.put("taskEntrys", taskEntrys);
 
-            System.out.println(projectEntrys.size());
+            System.out.println(taskEntrys.size());
 
            ctx.render("/public/project.html", Map);
         });
