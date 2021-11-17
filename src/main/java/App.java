@@ -16,11 +16,10 @@ public class App {
         // ROUTES
         Javalin app = Javalin.create(config -> {
             config.addStaticFiles("/public", Location.CLASSPATH);
-        }).start(7080);
-
+        }).start(8080);
+        openDBConnection();
         // Changelog eintrag zur DB hinzufuegen
         app.post("/changelogPost", ctx -> {
-            openDBConnection();
             String name = ctx.formParam("feature-name");
             String descri = ctx.formParam("feature-description");
             String kuerzel = ctx.formParam("kuerzel");
@@ -34,13 +33,11 @@ public class App {
             preparedStatement.setString(4, currentDate);
             preparedStatement.executeUpdate();
             System.out.println("Added Changlog Entry to Database");
-            closeDBSession();
             ctx.redirect("/changeLogList");
         });
 
         // Rendern des Changelog
         app.get("/changeLogList", ctx ->{
-            openDBConnection();
             String sql = "SELECT * FROM CHANGE_LOG ORDER BY CHANGE_ID DESC";
             statement = connection.createStatement();
             resultSet = statement.executeQuery(sql);
@@ -52,13 +49,11 @@ public class App {
                 changelogEntrys.add(new ChangeEntry(resultSet.getInt(1), resultSet.getString(2), resultSet.getString(3), resultSet.getString(4), resultSet.getString(5)));
             }
             Map.put("changelogEntrys", changelogEntrys);
-            closeDBSession();
             ctx.render("/public/changelog.html",Map);
         });
 
         // Rendern einer Projekt Html seite mit Dynamischen werten
         app.get("/project", ctx ->{
-            openDBConnection();
             String sql = "SELECT * FROM TASKS ORDER BY TASK_ID";
             statement = connection.createStatement();
             resultSet = statement.executeQuery(sql);
@@ -70,7 +65,6 @@ public class App {
                 taskEntrys.add(new Task(resultSet.getInt(1), resultSet.getInt(2), resultSet.getString(3),resultSet.getString(4), resultSet.getBoolean(5)));
             }
             Map.put("taskEntrys", taskEntrys);
-            closeDBSession();
            ctx.render("/public/project.html", Map);
         });
 
@@ -87,7 +81,6 @@ public class App {
            preparedStatement.setBoolean(4, false);
            preparedStatement.executeUpdate();
             System.out.println("Added New Task");
-            closeDBSession();
            ctx.redirect("/project");
 
         });
@@ -102,30 +95,10 @@ public class App {
             Class.forName("com.mysql.cj.jdbc.Driver");
             connection = DriverManager.getConnection(url, user,password);
             System.out.println("DB Connection Succsessful");
-
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
-        }
-    }
-
-    // Datenbank Verbindung Trennen
-    public static void closeDBSession(){
-        try {
-            connection.close();
-            if (statement != null){
-                statement.close();
-            }
-            if(preparedStatement != null){
-                preparedStatement.close();
-            }
-            if(resultSet != null){
-                resultSet.close();
-            }
-            System.out.println("DB Connection Closed");
-        } catch (SQLException e) {
-            e.printStackTrace();
         }
     }
 }
