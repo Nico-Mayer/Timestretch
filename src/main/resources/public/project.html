@@ -42,31 +42,31 @@
     </div>
 
     <!-- CONTENT -->
-    <div id="content" class="d-flex flex-column bg-light">
-        <div id="header-content-container">
-            <div id="new-entry-btn-container">
-                <form action="/addNewTask" method="post">
-                    <button type="submit" name="addTask" class="btn btn-primary" value="New Task">
-                        <img src="icons/add_white_24dp.svg">
-                        New Task
-                    </button>
-                </form>
-            </div>
-            <div id="time-display" class="text-light bg-dark">00:00:00.000</div>
-            <div style="width: 130px"></div>
-        </div>
-
-        <div id="main-content-container" class="d-flex flex-row">
-            <div id="task-container" class="d-flex flex-column">
-                <ul>
-                    <div  id="task"  class="bg-dark text-light" th:each="task : ${taskEntrys}">
-                        <p th:text="${task.taskID}"></p>
+    <div id="content" class="d-flex bg-light">
+        <div id="wrapper-content" class="d-flex flex-row">
+            <div id="main-content-container" class="d-flex flex-column" style="width: 100%">
+                <div id="header-content-container">
+                    <div id="new-entry-btn-container">
+                        <form action="/addNewTask" method="post">
+                            <button type="submit" name="addTask" class="btn btn-primary" value="New Task">
+                                <img src="icons/add_white_24dp.svg">
+                                New Task
+                            </button>
+                        </form>
                     </div>
-                </ul>
+                    <div id="time-display" class="text-light bg-dark">00:00:00.000</div>
+                    <div style="width: 130px"></div>
+                </div>
+                <div id="task-container" class="container d-flex flex-column">
+                    <ul>
+                        <div  id="task"  class="bg-dark text-light" th:each="task : ${taskEntrys}">
+                            <p th:text="${task.taskID}"></p>
+                        </div>
+                    </ul>
+                </div>
             </div>
-            <div id="done-container">Done</div>
+            <div id="done-container" class="flex-column bg-dark text-light">Done</div>
         </div>
-
     </div>
 </div>
 </body>
