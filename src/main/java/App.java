@@ -84,6 +84,35 @@ public class App {
            ctx.redirect("/project");
 
         });
+
+
+        // Daten für Home seite aus DB abfragen
+        app.get("/", ctx ->{
+            String sql = "SELECT * FROM PROJEKTE";
+            statement = connection.createStatement();
+            resultSet = statement.executeQuery(sql);
+
+            HashMap<String, ArrayList<Project>> Map = new HashMap<>();
+            ArrayList<Project> projectEntrys = new ArrayList<>();
+
+            while (resultSet.next()){
+                projectEntrys.add(new Project(resultSet.getInt(1), resultSet.getString(2), resultSet.getInt(3), resultSet.getBoolean(4), resultSet.getString(5)));
+            }
+            Map.put("projectEntrys", projectEntrys);
+            ctx.render("/public/index.html", Map);
+        });
+        app.post("/addProject", ctx -> {
+            String name = ctx.formParam("name");
+            String color = ctx.formParam("color");
+
+            preparedStatement = connection.prepareStatement("INSERT INTO `PROJEKTE` VALUES(0,?,0,?,?)");
+            preparedStatement.setString(1, name);
+            preparedStatement.setBoolean(2,false);
+            preparedStatement.setString(3, color);
+            preparedStatement.executeUpdate();
+            System.out.println("Added Project Entry to Database");
+            ctx.redirect("/");
+        });
     }
 
     //Datenbank Verbindung Herstellen

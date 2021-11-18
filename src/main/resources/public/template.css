@@ -94,4 +94,28 @@ html * {
   width: 200px;
 }
 
+/* CSS für Index.html BZW Home */
+#project-container{
+  display: grid;
+  height: 100%;
+  width: 100%;
+  grid-template-columns: 1fr 1fr;
+  justify-items: center;
+}
+
+.project{
+  width: 95%;
+  border-radius: 1rem;
+  min-width: 250px !important;
+  padding: 20px;
+  height: 200px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+@media only screen and (max-width: 1200px) {
+  #project-container{
+    grid-template-columns: 1fr;
+  }
+}
 

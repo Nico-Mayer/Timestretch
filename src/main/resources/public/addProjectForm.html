@@ -29,7 +29,7 @@
         </div>
         <hr class="text-light">
         <ul class="list-group list-group-flush">
-            <li class="nav-item"><a href="/" class="nav-link active text-white"><img src="icons/home_white_24dp.svg" class="icon-svg" alt="">Home</a></li>
+            <li class="nav-item"><a href="/" class="nav-link text-white active"><img src="icons/home_white_24dp.svg" class="icon-svg" alt="">Home</a></li>
             <li class="nav-item"><a class="nav-link text-white" href="/project"><img src="icons/folder_white_24dp.svg" class="icon-svg" alt="">Projekt 1</a></li>
             <li class="nav-item"><a class="nav-link text-white" href="#"><img src="icons/folder_white_24dp.svg" class="icon-svg" alt="">Projekt 2</a></li>
             <li class="nav-item"><a class="nav-link text-white" href="changeLogList"><img src="icons/code_white_24dp.svg" class="icon-svg" alt="">Changelog</a></li>
@@ -41,21 +41,27 @@
         </div>
     </div>
 
-    <!-- CONTENT -->
-    <div id="content" class="bg-light d-flex flex-column">
-        <div id="header-content-container">
-            <div id="new-entry-btn-container">
-                <a class="btn btn-primary" href="/addProjectForm.html">
-                    <img src="icons/add_white_24dp.svg" id="icon-svg">
-                    New Project
-                </a>
-            </div>
-        </div>
 
-        <div id="project-container">
-            <div class="project text-light" th:each="projectEntry : ${projectEntrys}" th:style="'background-color: ' + ${projectEntry.color}">
-                <p th:text="${projectEntry.name}"></p>
-            </div>
+    <!-- CONTENT -->
+    <div id="content" class="bg-light">
+        <div class="container-fluid">
+            <form method="post" action="/addProject">
+                <div class="mb-3">
+                    <label for="name" class="form-label">Project Name</label>
+                    <input type="text" class="form-control" id="name" name="name" maxlength="60" required="required">
+                </div>
+                <div class="mb-3 form-check">
+                    <label for="color">Farbe</label>
+                    <select name="color" id="color" style="width: 50px">
+                        <option value="#264653" style="background-color: #264653"></option>
+                        <option value="#2a9d8f" style="background-color: #2a9d8f"></option>
+                        <option value="#e9c46a" style="background-color: #e9c46a"></option>
+                        <option value="#f4a261" style="background-color: #f4a261"></option>
+                        <option value="#e76f51" style="background-color: #e76f51"></option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
         </div>
     </div>
 </div>
