@@ -3,10 +3,10 @@ public class Task {
     public int projectID;
     public String name;
     public String description;
-    public boolean done;
+    public int done;
 
 
-    public  Task(Integer taskID, Integer projectID, String name, String description, boolean done){
+    public  Task(Integer taskID, Integer projectID, String name, String description, int done){
         this.taskID = taskID;
         this.projectID = projectID;
         this.name = name;

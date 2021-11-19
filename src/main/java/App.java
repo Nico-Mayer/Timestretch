@@ -16,7 +16,7 @@ public class App {
         // ROUTES
         Javalin app = Javalin.create(config -> {
             config.addStaticFiles("/public", Location.CLASSPATH);
-        }).start(8080);
+        }).start(8030);
         openDBConnection();
         // Changelog eintrag zur DB hinzufuegen
         app.post("/changelogPost", ctx -> {
@@ -26,7 +26,7 @@ public class App {
             DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
             Date date = new Date();
             String currentDate = dateFormat.format(date);
-            preparedStatement = connection.prepareStatement("INSERT INTO `CHANGE_LOG` VALUES(0,?,?,?,?)");
+            preparedStatement = connection.prepareStatement("INSERT INTO CHANGE_ENTRYS VALUES(CHANGE_ID.nextval,?,?,?,?)");
             preparedStatement.setString(1, name);
             preparedStatement.setString(2, descri);
             preparedStatement.setString(3, kuerzel);
@@ -38,7 +38,7 @@ public class App {
 
         // Rendern des Changelog
         app.get("/changeLogList", ctx ->{
-            String sql = "SELECT * FROM CHANGE_LOG ORDER BY CHANGE_ID DESC";
+            String sql = "SELECT * FROM CHANGE_ENTRYS ORDER BY CHANGE_ID DESC";
             statement = connection.createStatement();
             resultSet = statement.executeQuery(sql);
             HashMap<String, ArrayList<ChangeEntry>> Map = new HashMap<>();
@@ -62,7 +62,7 @@ public class App {
             ArrayList<Task> taskEntrys = new ArrayList<>();
 
             while (resultSet.next()){
-                taskEntrys.add(new Task(resultSet.getInt(1), resultSet.getInt(2), resultSet.getString(3),resultSet.getString(4), resultSet.getBoolean(5)));
+                taskEntrys.add(new Task(resultSet.getInt(1), resultSet.getInt(2), resultSet.getString(3),resultSet.getString(4), resultSet.getInt(5)));
             }
             Map.put("taskEntrys", taskEntrys);
            ctx.render("/public/project.html", Map);
@@ -71,14 +71,14 @@ public class App {
         // Neuen Task zu der DB Hinzufuegen
         app.post("/addNewTask", ctx ->{
             openDBConnection();
-            int projectID = 1;
+            int projectID = 3;
             String name = "test";
             String description = "";
-           preparedStatement = connection.prepareStatement("INSERT INTO `TASKS` VALUES (0,?,?,?,?)");
+           preparedStatement = connection.prepareStatement("INSERT INTO TASKS VALUES (TASK_ID.nextval,?,?,?,?)");
            preparedStatement.setInt(1,projectID);
            preparedStatement.setString(2, name);
            preparedStatement.setString(3,description);
-           preparedStatement.setBoolean(4, false);
+           preparedStatement.setInt(4, 0);
            preparedStatement.executeUpdate();
             System.out.println("Added New Task");
            ctx.redirect("/project");
