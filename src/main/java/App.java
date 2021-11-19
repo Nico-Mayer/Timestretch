@@ -88,7 +88,7 @@ public class App {
 
         // Daten für Home seite aus DB abfragen
         app.get("/", ctx ->{
-            String sql = "SELECT * FROM PROJEKTE";
+            String sql = "SELECT * FROM PROJECTS ORDER BY PROJECT_ID";
             statement = connection.createStatement();
             resultSet = statement.executeQuery(sql);
 
@@ -96,18 +96,20 @@ public class App {
             ArrayList<Project> projectEntrys = new ArrayList<>();
 
             while (resultSet.next()){
-                projectEntrys.add(new Project(resultSet.getInt(1), resultSet.getString(2), resultSet.getInt(3), resultSet.getBoolean(4), resultSet.getString(5)));
+                projectEntrys.add(new Project(resultSet.getInt(1), resultSet.getString(2), resultSet.getInt(3), resultSet.getInt(4), resultSet.getString(5)));
             }
+
             Map.put("projectEntrys", projectEntrys);
             ctx.render("/public/index.html", Map);
         });
+        // Project Object zur Datenbank hinzufügen
         app.post("/addProject", ctx -> {
             String name = ctx.formParam("name");
             String color = ctx.formParam("color");
 
-            preparedStatement = connection.prepareStatement("INSERT INTO `PROJEKTE` VALUES(0,?,0,?,?)");
+            preparedStatement = connection.prepareStatement("INSERT INTO PROJECTS VALUES(PROJECT_ID.nextval,?,0,?,?)");
             preparedStatement.setString(1, name);
-            preparedStatement.setBoolean(2,false);
+            preparedStatement.setInt(2,0);
             preparedStatement.setString(3, color);
             preparedStatement.executeUpdate();
             System.out.println("Added Project Entry to Database");
@@ -117,11 +119,11 @@ public class App {
 
     //Datenbank Verbindung Herstellen
     public static void openDBConnection(){
-        String url = "jdbc:mysql://sql11.freesqldatabase.com:3306/sql11450649";
-        String user = "sql11450649";
-        String password = "b8XJHtWxnq";
+        String url = "jdbc:oracle:thin:@//dbcluster12.cs.ohm-hochschule.de:1521/oracle.ohmhs.de";
+        String user = "STUDI16_OWNER";
+        String password = "OHM16_OWNER";
         try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
+            Class.forName("oracle.jdbc.OracleDriver");
             connection = DriverManager.getConnection(url, user,password);
             System.out.println("DB Connection Succsessful");
         } catch (ClassNotFoundException e) {
