@@ -115,6 +115,17 @@ public class App {
             System.out.println("Added Project Entry to Database");
             ctx.redirect("/");
         });
+        // Project Object aus Datenbank Löschen
+        app.post("/deleteProject", ctx ->{
+            String projectId = ctx.formParam("project-id");
+            preparedStatement = connection.prepareStatement("DELETE  FROM TASKS WHERE PROJECT_ID = " + projectId);
+            preparedStatement.executeUpdate();
+            System.out.println("Deletet all Tasks for Project " + projectId);
+            preparedStatement = connection.prepareStatement("DELETE FROM PROJECTS WHERE PROJECT_ID = " + projectId);
+            preparedStatement.executeUpdate();
+            System.out.println("Deletet Project " + projectId);
+            ctx.redirect("/");
+        });
     }
 
     //Datenbank Verbindung Herstellen

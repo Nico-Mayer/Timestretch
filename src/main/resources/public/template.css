@@ -107,15 +107,58 @@ body{
   justify-items: center;
 }
 
-.project{
+#project {
+  display: flex;
+  flex-direction: row;
   width: 95%;
-  border-radius: 1rem;
   min-width: 250px !important;
-  padding: 20px;
+  border-radius: 1rem;
   height: 200px;
   margin-top: 20px;
   margin-bottom: 20px;
 }
+#project:hover{
+  box-shadow: 1px 1px 1px 1px darkgray;
+}
+
+#project-content {
+  width: 100%;
+  padding: 25px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+#project-btn-container {
+  width: 40px;
+}
+
+#project-link {
+  text-decoration: none;
+  display: flex;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+}
+
+#project-title {
+  font-weight: bold;
+  font-size: x-large;
+}
+
+#projects-time-task-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+#project-btn-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+
 
 @media only screen and (max-width: 1200px) {
   #project-container{

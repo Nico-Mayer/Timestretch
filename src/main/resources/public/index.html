@@ -53,10 +53,34 @@
         </div>
 
         <div id="project-container">
-            <div class="project text-light" th:each="projectEntry : ${projectEntrys}" th:style="'background-color: ' + ${projectEntry.color}">
-                <p th:text="${projectEntry.name}"></p>
+
+            <div id="project"  th:each="projectEntry : ${projectEntrys}" th:style="'background-color: ' + ${projectEntry.color}">
+                <a href="#" id="project-link" class="text-light">
+                    <div id="project-content">
+                        <p id="project-title" th:text="${projectEntry.name}"></p>
+                        <div id="projects-time-task-container">
+                            <p id="project-time" th:text="${projectEntry.totalTime} + ' min'"></p>
+                            <p id="project-tasks">Open Tasks: 0</p>
+                        </div>
+                    </div>
+                </a>
+                <div id="project-btn-container">
+                    <a href="#" id="settings-btn">
+                        <img src="/icons/settings_white_24dp.svg" alt="#" />
+                    </a>
+                    <form action="/deleteProject" method="post" >
+                        <input type="hidden" name="project-id" th:value="${projectEntry.id}">
+                        <input type="image" src="icons/delete_white_24dp.svg" name="delete-btn">
+                    </form>
+                </div>
             </div>
+
         </div>
+
+
+
+
+
     </div>
 </div>
 </body>
