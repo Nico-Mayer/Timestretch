@@ -53,7 +53,9 @@ public class App {
         });
 
         // Rendern einer Projekt Html seite mit Dynamischen werten
-        app.get("/project", ctx ->{
+        app.get("/project{id}", ctx ->{
+            //System.out.println(ctx.pathParam("id"));
+
             String sql = "SELECT * FROM TASKS ORDER BY TASK_ID";
             statement = connection.createStatement();
             resultSet = statement.executeQuery(sql);
