@@ -27,15 +27,12 @@ export default function Modal(type, backdrop, modal, showTrigger, url) {
                     </select>
                 </div>
   <button type="submit" class="btn btn-success">Projekt hinzufügen</button>
-  <button class="btn btn-outline-secondary" id='project-btn-cancel'> Abbrechen </button>
+  <button type="button" class="btn btn-outline-secondary" id='project-btn-cancel'> Abbrechen </button>
 </form>
 </div>`;
                 document
                     .getElementById("project-btn-cancel")
-                    .addEventListener("click", function() {
-                        this.backdrop.style.display = "none";
-                        this.modal.style.display = "none";
-                    });
+                    .addEventListener("click", this.hideBtn.bind(null,this.backdrop,this.modal));
 
                 break;
             case "task":
@@ -52,16 +49,13 @@ export default function Modal(type, backdrop, modal, showTrigger, url) {
   <textarea class="form-control" id="task-beschreibung" rows="3" name='taskDesc'></textarea>
 </div>
   <button type="submit" class="btn btn-success">Task hinzufügen</button>
-  <button class="btn btn-outline-secondary" id='task-btn-cancel'> Abbrechen </button>
+  <button type="button" class="btn btn-outline-secondary" id='task-btn-cancel'> Abbrechen </button>
 </form>
 </div>`;
                 document.getElementById("modal-container-task").style.height = "400px";
                 document
                     .getElementById("task-btn-cancel")
-                    .addEventListener("click", function() {
-                        this.backdrop.style.display = "none";
-                        this.modal.style.display = "none";
-                    });
+                    .addEventListener("click", this.hideBtn.bind(null,this.backdrop,this.modal));
                 break;
             default:
                 this.modal.innerHTML = ` 
@@ -69,15 +63,12 @@ export default function Modal(type, backdrop, modal, showTrigger, url) {
         <h2 style='margin-bottom: 50px;'> Sind Sie sicher das Sie diesen Eintrag löschen wollen ?</h2>
         <form method='post' action=${this.url}>
   <button type="submit" class="btn btn-danger">Löschen</button>
-  <button class="btn btn-outline-secondary" id='confirm-btn-cancel'> Abbrechen </button>
+  <button type="button" class="btn btn-outline-secondary" id='confirm-btn-cancel'> Abbrechen </button>
 </form>
 </div>`;
                 document
                     .getElementById("confirm-btn-cancel")
-                    .addEventListener("click", function() {
-                        this.backdrop.style.display = "none";
-                        this.modal.style.display = "none";
-                    });
+                    .addEventListener("click", this.hideBtn.bind(null,this.backdrop,this.modal));
         }
         this.showTrigger.addEventListener(
             "click",
@@ -92,5 +83,9 @@ export default function Modal(type, backdrop, modal, showTrigger, url) {
             backdrop.style.display = "none";
             modal.style.display = "none";
         });
+    };
+    this.hideBtn = function (backdrop, modal) {
+        backdrop.style.display = "none";
+        modal.style.display = "none";
     };
 }
