@@ -106,7 +106,7 @@ public class App {
         });
         // Project Object zur Datenbank hinzufügen
         app.post("/addProject", ctx -> {
-            String name = ctx.formParam("name");
+            String name = ctx.formParam("projektName");
             String color = ctx.formParam("color");
 
             preparedStatement = connection.prepareStatement("INSERT INTO PROJECTS VALUES(PROJECT_ID.nextval,?,0,?,?)");

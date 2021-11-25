@@ -14,7 +14,7 @@
             crossorigin="anonymous"
     />
     <link rel="stylesheet" href="template.css" />
-
+    <script type="module" src="scripts/main.js"></script>
     <title>Timestretch</title>
 </head>
 <body>
@@ -47,12 +47,10 @@
             <div id="main-content-container" class="d-flex flex-column" style="width: 100%">
                 <div id="header-content-container">
                     <div id="new-entry-btn-container">
-                        <form action="/addNewTask" method="post">
-                            <button type="submit" name="addTask" class="btn btn-primary" value="New Task">
+                            <button class="btn btn-primary"  id="add-task-btn">
                                 <img src="icons/add_white_24dp.svg">
                                 New Task
                             </button>
-                        </form>
                     </div>
                     <div id="time-display" class="text-light bg-dark">00:00:00.000</div>
                     <div style="width: 130px"></div>
@@ -69,5 +67,8 @@
         </div>
     </div>
 </div>
+<div id="modal-backdrop"></div>
+<div id="modal-container-task"></div>
+<div id="modal-container-confirm"></div>
 </body>
 </html>
