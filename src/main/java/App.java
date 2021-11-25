@@ -18,91 +18,36 @@ public class App {
             config.addStaticFiles("/public", Location.CLASSPATH);
         }).start(8030);
         openDBConnection();
-        // Changelog eintrag zur DB hinzufuegen
-        app.post("/changelogPost", ctx -> {
-            String name = ctx.formParam("feature-name");
-            String descri = ctx.formParam("feature-description");
-            String kuerzel = ctx.formParam("kuerzel");
-            DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-            Date date = new Date();
-            String currentDate = dateFormat.format(date);
-            preparedStatement = connection.prepareStatement("INSERT INTO CHANGE_ENTRYS VALUES(CHANGE_ID.nextval,?,?,?,?)");
-            preparedStatement.setString(1, name);
-            preparedStatement.setString(2, descri);
-            preparedStatement.setString(3, kuerzel);
-            preparedStatement.setString(4, currentDate);
-            preparedStatement.executeUpdate();
-            System.out.println("Added Changlog Entry to Database");
-            ctx.redirect("/changeLogList");
-        });
 
-        // Rendern des Changelog
-        app.get("/changeLogList", ctx ->{
-            String sql = "SELECT * FROM CHANGE_ENTRYS ORDER BY CHANGE_ID DESC";
-            statement = connection.createStatement();
-            resultSet = statement.executeQuery(sql);
-            HashMap<String, ArrayList<ChangeEntry>> Map = new HashMap<>();
-            ArrayList<ChangeEntry> changelogEntrys = new ArrayList<ChangeEntry>();
+        // Rendern einer Projekt Html Seite
+        app.get("/project{projectID}", ctx ->{
+            String projectID  = ctx.pathParam("projectID");
+            HashMap<String, ArrayList<Task>> TasksMap = new HashMap<>();
+            TasksMap.put("taskEntrys", getTaskEntrys(projectID));
+            HashMap<String, ArrayList<Project>> ProjectsMap = new HashMap<>();
+            ProjectsMap.put("projectEntrys", getProjectEntrys());
 
-            while(resultSet.next())
-            {
-                changelogEntrys.add(new ChangeEntry(resultSet.getInt(1), resultSet.getString(2), resultSet.getString(3), resultSet.getString(4), resultSet.getString(5)));
-            }
-            Map.put("changelogEntrys", changelogEntrys);
-            ctx.render("/public/changelog.html",Map);
-        });
-
-        // Rendern einer Projekt Html seite mit Dynamischen werten
-        app.get("/project{id}", ctx ->{
-            //System.out.println(ctx.pathParam("id"));
-
-            String sql = "SELECT * FROM TASKS ORDER BY TASK_ID";
-            statement = connection.createStatement();
-            resultSet = statement.executeQuery(sql);
-
-            HashMap<String, ArrayList<Task>> Map = new HashMap<>();
-            ArrayList<Task> taskEntrys = new ArrayList<>();
-
-            while (resultSet.next()){
-                taskEntrys.add(new Task(resultSet.getInt(1), resultSet.getInt(2), resultSet.getString(3),resultSet.getString(4), resultSet.getInt(5)));
-            }
-            Map.put("taskEntrys", taskEntrys);
-           ctx.render("/public/project.html", Map);
+           ctx.render("/public/project.html", TasksMap);
+           ctx.render("/public/project.html", ProjectsMap);
         });
 
         // Neuen Task zu der DB Hinzufuegen
-        app.post("/addNewTask", ctx ->{
-            openDBConnection();
-            int projectID = 3;
-            String name = "test";
-            String description = "";
-           preparedStatement = connection.prepareStatement("INSERT INTO TASKS VALUES (TASK_ID.nextval,?,?,?,?)");
-           preparedStatement.setInt(1,projectID);
-           preparedStatement.setString(2, name);
-           preparedStatement.setString(3,description);
-           preparedStatement.setInt(4, 0);
-           preparedStatement.executeUpdate();
-            System.out.println("Added New Task");
-           ctx.redirect("/project");
-
+        app.post("/addNewTask{projectID}", ctx ->{
+            String projectID = ctx.pathParam("projectID");
+            String name = ctx.formParam("taskName");
+            String description = ctx.formParam("taskDesc");
+            addTaskToDB(Integer.parseInt(projectID), name, description);
+            ctx.redirect("/project" + projectID);
         });
 
 
         // Daten für Home seite aus DB abfragen
         app.get("/", ctx ->{
-            String sql = "SELECT * FROM PROJECTS ORDER BY PROJECT_ID";
-            statement = connection.createStatement();
-            resultSet = statement.executeQuery(sql);
+            HashMap<String, ArrayList<Project>> ProjectMap = new HashMap<>();
+            ArrayList<Project> projectEntrys = getProjectEntrys();
 
-            HashMap<String, ArrayList<Project>> Map = new HashMap<>();
-            ArrayList<Project> projectEntrys = new ArrayList<>();
-
-            while (resultSet.next()){
-                projectEntrys.add(new Project(resultSet.getInt(1), resultSet.getString(2), resultSet.getInt(3), resultSet.getInt(4), resultSet.getString(5)));
-            }
-
-            Map.put("projectEntrys", projectEntrys);
-            ctx.render("/public/index.html", Map);
+            ProjectMap.put("projectEntrys", projectEntrys);
+            ctx.render("/public/index.html",ProjectMap);
         });
         // Project Object zur Datenbank hinzufügen
         app.post("/addProject", ctx -> {
@@ -118,17 +63,19 @@ public class App {
             ctx.redirect("/");
         });
         // Project Object aus Datenbank Löschen
-        app.post("/deleteProject", ctx ->{
-            String projectId = ctx.formParam("project-id");
-            preparedStatement = connection.prepareStatement("DELETE  FROM TASKS WHERE PROJECT_ID = " + projectId);
+        app.post("/deleteProject{projectID}", ctx ->{
+            String projectID = ctx.pathParam("projectID");
+            preparedStatement = connection.prepareStatement("DELETE  FROM TASKS WHERE PROJECT_ID = " + projectID);
             preparedStatement.executeUpdate();
-            System.out.println("Deletet all Tasks for Project " + projectId);
-            preparedStatement = connection.prepareStatement("DELETE FROM PROJECTS WHERE PROJECT_ID = " + projectId);
+            System.out.println("Deletet all Tasks for Project " + projectID);
+            preparedStatement = connection.prepareStatement("DELETE FROM PROJECTS WHERE PROJECT_ID = " + projectID);
             preparedStatement.executeUpdate();
-            System.out.println("Deletet Project " + projectId);
+            System.out.println("Deletet Project " + projectID);
             ctx.redirect("/");
         });
     }
+
+    // Ab hier Hilfsmethoden
 
     //Datenbank Verbindung Herstellen
     public static void openDBConnection(){
@@ -144,6 +91,66 @@ public class App {
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
+    }
+
+    public static ArrayList<Project> getProjectEntrys(){
+        try {
+            String sql = "SELECT * FROM PROJECTS ORDER BY PROJECT_ID";
+            statement = connection.createStatement();
+            resultSet = statement.executeQuery(sql);
+            ArrayList<Project> projectEntrys = new ArrayList<>();
+
+
+
+            while (resultSet.next()){
+                projectEntrys.add(new Project(resultSet.getInt(1), resultSet.getString(2), resultSet.getInt(3), resultSet.getInt(4), resultSet.getString(5), 0));
+            }
+
+            // Implementierung für open Tasks
+            for (int i = 0; i < projectEntrys.size(); i++){
+                ResultSet resultSet2 = statement.executeQuery("SELECT COUNT(DONE) FROM TASKS WHERE PROJECT_ID = " + projectEntrys.get(i).id + "AND DONE = 0");
+                resultSet2.next();
+                projectEntrys.get(i).openTasks = resultSet2.getInt(1);
+                resultSet2.close();
+            }
+
+            return  projectEntrys;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public static ArrayList<Task> getTaskEntrys(String projectID){
+        try {
+            String sql = "SELECT * FROM TASKS WHERE TASKS.PROJECT_ID =" + projectID + "ORDER BY TASK_ID";
+            statement = connection.createStatement();
+            resultSet = statement.executeQuery(sql);
+            ArrayList<Task> taskEntrys = new ArrayList<>();
+            while (resultSet.next()){
+                taskEntrys.add(new Task(resultSet.getInt(1), resultSet.getInt(2), resultSet.getString(3),resultSet.getString(4), resultSet.getInt(5)));
+            }
+            System.out.println("Found " + taskEntrys.size()+ " Entrys for ProjectID " + projectID);
+            return  taskEntrys;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public static void addTaskToDB(int projectID, String name, String description){
+        try {
+            preparedStatement = connection.prepareStatement("INSERT INTO TASKS VALUES (TASK_ID.nextval,?,?,?,?)");
+            preparedStatement.setInt(1,projectID);
+            preparedStatement.setString(2, name);
+            preparedStatement.setString(3,description);
+            preparedStatement.setInt(4, 0);
+            preparedStatement.executeUpdate();
+            System.out.println("Added New Task to Project with ID: " + projectID);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
     }
 }
 

@@ -142,7 +142,7 @@ body{
 }
 
 #project-title {
-  font-weight: bold;
+
   font-size: x-large;
 }
 
@@ -220,3 +220,6 @@ body{
   margin: 20px;
 }
 
+#project-nav-link{
+  padding-left: 10px;
+}

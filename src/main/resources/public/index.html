@@ -30,8 +30,13 @@
         <hr class="text-light">
         <ul class="list-group list-group-flush">
             <li class="nav-item"><a href="/" class="nav-link active text-white"><img src="icons/home_white_24dp.svg" class="icon-svg" alt="">Home</a></li>
-            <li class="nav-item" th:each="projectEntry : ${projectEntrys}"><a class="nav-link text-white"  th:href="@{/project{id}(id = ${projectEntry.id})}" th:text="${projectEntry.name}"><img src="icons/folder_white_24dp.svg" class="icon-svg" alt=""></a></li>
-            <li class="nav-item"><a class="nav-link text-white" href="changeLogList"><img src="icons/code_white_24dp.svg" class="icon-svg" alt="">Changelog</a></li>
+            <hr class="text-light">
+            <li class="nav-item" th:each="projectEntry : ${projectEntrys}" id="project-nav-link">
+                <a class="nav-link text-white"  th:href="@{/project{projectID}(projectID = ${projectEntry.id})}">
+                    <img src="icons/folder_white_24dp.svg">
+                    <span th:text="${projectEntry.name}" style="padding-left: 10px"></span>
+                </a>
+            </li>
         </ul>
 
         <div class="align-self-end text-light" id="user">
@@ -54,12 +59,12 @@
         <div id="project-container">
 
             <div id="project"  th:each="projectEntry : ${projectEntrys}" th:style="'background-color: ' + ${projectEntry.color}">
-                <a href="#" id="project-link" class="text-light">
+                <a th:href="@{/project{projectID}(projectID = ${projectEntry.id})}" id="project-link" class="text-light">
                     <div id="project-content">
                         <p id="project-title" th:text="${projectEntry.name}"></p>
                         <div id="projects-time-task-container">
                             <p id="project-time" th:text="${projectEntry.totalTime} + ' min'"></p>
-                            <p id="project-tasks">Open Tasks: 0</p>
+                            <p id="project-tasks" th:text="'Open Tasks: ' + ${projectEntry.openTasks}"></p>
                         </div>
                     </div>
                 </a>

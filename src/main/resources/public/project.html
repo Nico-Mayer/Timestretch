@@ -29,10 +29,14 @@
         </div>
         <hr class="text-light">
         <ul class="list-group list-group-flush">
-            <li class="nav-item"><a href="/" class="nav-link text-white"><img src="icons/home_white_24dp.svg" class="icon-svg" alt="">Home</a></li>
-            <li class="nav-item"><a class="nav-link text-white active" href="/project"><img src="icons/folder_white_24dp.svg" class="icon-svg" alt="">Projekt 1</a></li>
-            <li class="nav-item"><a class="nav-link text-white" href="#"><img src="icons/folder_white_24dp.svg" class="icon-svg" alt="">Projekt 2</a></li>
-            <li class="nav-item"><a class="nav-link text-white" href="changeLogList"><img src="icons/code_white_24dp.svg" class="icon-svg" alt="">Changelog</a></li>
+            <li class="nav-item"><a href="/" class="nav-link active text-white"><img src="icons/home_white_24dp.svg" class="icon-svg" alt="">Home</a></li>
+            <hr class="text-light">
+            <li class="nav-item" th:each="projectEntry : ${projectEntrys}" id="project-nav-link">
+                <a class="nav-link text-white"  th:href="@{/project{projectID}(projectID = ${projectEntry.id})}">
+                    <img src="icons/folder_white_24dp.svg">
+                    <span th:text="${projectEntry.name}" style="padding-left: 10px"></span>
+                </a>
+            </li>
         </ul>
 
         <div class="align-self-end text-light" id="user">
@@ -58,7 +62,8 @@
                 <div id="task-container" class="container d-flex flex-column">
                     <ul>
                         <div  id="task"  class="bg-dark text-light" th:each="task : ${taskEntrys}">
-                            <p th:text="${task.taskID}"></p>
+                            <p th:text="${task.name}"></p>
+                            <span th:text="${task.description}"></span>
                         </div>
                     </ul>
                 </div>

@@ -13,7 +13,7 @@ export default function Modal(type, backdrop, modal, showTrigger, url) {
         <form method='post' action=${this.url}>
   <div class="mb-3">
     <label for="projektName" class="form-label">Projekt Name</label>
-    <input type="text" class="form-control" id="projekt-name" name='projektName' >
+    <input type="text" class="form-control" id="projekt-name" name='projektName' required="required">
     <div id="proekt-name-help" class="form-text">Geben Sie Ihrem Projekt einen Eindeutigen Namen</div>
   </div>
   <div class="mb-3 form-check">
@@ -42,11 +42,11 @@ export default function Modal(type, backdrop, modal, showTrigger, url) {
         <form method='post' action=${this.url}>
   <div class="mb-3">
     <label for="taskName" class="form-label">Task Name</label>
-    <input type="text" class="form-control" id="task-name" name='taskName' >
+    <input type="text" class="form-control" id="taskName" name='taskName' required="required">
   </div>
   <div class="mb-3">
   <label for="taskDesc" class="form-label">Task Beschreibung</label>
-  <textarea class="form-control" id="task-beschreibung" rows="3" name='taskDesc'></textarea>
+  <textarea class="form-control" id="taskDesc" rows="3" name='taskDesc'></textarea>
 </div>
   <button type="submit" class="btn btn-success">Task hinzufügen</button>
   <button type="button" class="btn btn-outline-secondary" id='task-btn-cancel'> Abbrechen </button>

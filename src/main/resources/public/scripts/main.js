@@ -16,7 +16,7 @@ const projectModal = new Modal(
     addProjectBtn,
     "/addProject"
 );
-const taskModal = new Modal("task", backdrop,modalT,addTaskBtn, "/addNewTask");
+
 
 if (deleteBtnArray !== null){
     deleteBtnArray.forEach(function(e){
@@ -30,6 +30,9 @@ if(addProjectBtn !== null){
     projectModal.set();
 }
 if(addTaskBtn !== null){
+    const projectID = window.location.href.substr(29); // Verbesserung suchen
+    console.log(projectID);
+    const taskModal = new Modal("task", backdrop,modalT,addTaskBtn, "/addNewTask"+projectID);
     taskModal.set();
 }
 
