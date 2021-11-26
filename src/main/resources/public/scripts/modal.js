@@ -65,7 +65,7 @@ export default function Modal(type, backdrop, modal, showTrigger, url) {
         <form method='post' action=${this.url}>
   <div class="mb-3">
     <label for="projektName" class="form-label">Neuer Projekt Name</label>
-    <input type="text" class="form-control" id="projekt-name" name='projektName' required="required">
+    <input type="text" class="form-control" id="projekt-name" name='projektName' >
     <div id="proekt-name-help" class="form-text">Geben Sie Ihrem Projekt einen Eindeutigen Namen</div>
   </div>
   <div class="mb-3 form-check">
