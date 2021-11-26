@@ -54,6 +54,10 @@ public class App {
             String name = ctx.formParam("projektName");
             String color = ctx.formParam("color");
 
+            if(color == ""){
+                color = "#264653";
+            }
+
             preparedStatement = connection.prepareStatement("INSERT INTO PROJECTS VALUES(PROJECT_ID.nextval,?,0,?,?)");
             preparedStatement.setString(1, name);
             preparedStatement.setInt(2,0);
@@ -73,6 +77,28 @@ public class App {
             System.out.println("Deletet Project " + projectID);
             ctx.redirect("/");
         });
+        // Project Object Bearbeiten
+        app.post("configProject{projectID}", ctx ->{
+            String projectID = ctx.pathParam("projectID");
+            String name = ctx.formParam("projektName");
+            String color = ctx.formParam("color");
+
+            if(name == "" && color != null){
+                preparedStatement = connection.prepareStatement("UPDATE PROJECTS SET COLOR = ? WHERE PROJECT_ID = " + projectID);
+                preparedStatement.setString(1,color);
+            }else if(name != null && color == ""){
+                preparedStatement = connection.prepareStatement("UPDATE PROJECTS SET NAME = ? WHERE PROJECT_ID = " + projectID);
+                preparedStatement.setString(1,name);
+            }else{
+                preparedStatement = connection.prepareStatement("UPDATE PROJECTS SET NAME = ?, COLOR = ? WHERE PROJECT_ID = " + projectID);
+                preparedStatement.setString(1,name);
+                preparedStatement.setString(2,color);
+            }
+            preparedStatement.executeUpdate();
+            System.out.println("Projekt " + projectID + " erfolgreich Bearbeitet.");
+            ctx.redirect("/");
+        });
+
     }
 
     // Ab hier Hilfsmethoden

@@ -16,15 +16,16 @@ export default function Modal(type, backdrop, modal, showTrigger, url) {
     <input type="text" class="form-control" id="projekt-name" name='projektName' required="required">
     <div id="proekt-name-help" class="form-text">Geben Sie Ihrem Projekt einen Eindeutigen Namen</div>
   </div>
-  <div class="mb-3 form-check">
+  <div class="mb-3">
                     <label for="color">Farbe</label>
-                    <select name="color" id="color" style="width: 50px">
-                        <option value="#264653" style="background-color: #264653"></option>
-                        <option value="#2a9d8f" style="background-color: #2a9d8f"></option>
-                        <option value="#e9c46a" style="background-color: #e9c46a"></option>
-                        <option value="#f4a261" style="background-color: #f4a261"></option>
-                        <option value="#e76f51" style="background-color: #e76f51"></option>
-                    </select>
+                    <div style="width: 300px; height: 30px; display: flex; flex-direction: row; justify-content: left; align-items: center">
+                       <div data-color = "#264653" style="background-color: #264653" class="color-select-item"></div>
+                       <div data-color = "#2a9d8f" style="background-color: #2a9d8f" class="color-select-item"></div>
+                       <div data-color = "#e9c46a" style="background-color: #e9c46a" class="color-select-item"></div>
+                       <div data-color = "#f4a261" style="background-color: #f4a261" class="color-select-item"></div>
+                       <div data-color = "#e76f51" style="background-color: #e76f51" class="color-select-item"></div>
+                    </div>
+                    <input type="hidden" name="color" id="color-select-input-new" value="">
                 </div>
   <button type="submit" class="btn btn-success">Projekt hinzufügen</button>
   <button type="button" class="btn btn-outline-secondary" id='project-btn-cancel'> Abbrechen </button>
@@ -33,6 +34,8 @@ export default function Modal(type, backdrop, modal, showTrigger, url) {
                 document
                     .getElementById("project-btn-cancel")
                     .addEventListener("click", this.hideBtn.bind(null,this.backdrop,this.modal));
+                    this.colorPickerLogic("color-select-input-new");
+
 
                 break;
             case "task":
@@ -68,15 +71,16 @@ export default function Modal(type, backdrop, modal, showTrigger, url) {
     <input type="text" class="form-control" id="projekt-name" name='projektName' >
     <div id="proekt-name-help" class="form-text">Geben Sie Ihrem Projekt einen Eindeutigen Namen</div>
   </div>
-  <div class="mb-3 form-check">
+  <div class="mb-3">
                     <label for="color">Farbe</label>
-                    <select name="color" id="color" style="width: 50px">
-                        <option value="#264653" style="background-color: #264653"></option>
-                        <option value="#2a9d8f" style="background-color: #2a9d8f"></option>
-                        <option value="#e9c46a" style="background-color: #e9c46a"></option>
-                        <option value="#f4a261" style="background-color: #f4a261"></option>
-                        <option value="#e76f51" style="background-color: #e76f51"></option>
-                    </select>
+                    <div style="width: 300px; height: 30px; display: flex; flex-direction: row; justify-content: left; align-items: center">
+                       <div data-color = "#264653" style="background-color: #264653" class="color-select-item"></div>
+                       <div data-color = "#2a9d8f" style="background-color: #2a9d8f" class="color-select-item"></div>
+                       <div data-color = "#e9c46a" style="background-color: #e9c46a" class="color-select-item"></div>
+                       <div data-color = "#f4a261" style="background-color: #f4a261" class="color-select-item"></div>
+                       <div data-color = "#e76f51" style="background-color: #e76f51" class="color-select-item"></div>
+                    </div>
+                    <input type="hidden" name="color" id="color-select-input-update" value="">
                 </div>
   <button type="submit" class="btn btn-danger">Projekt ändern</button>
   <button type="button" class="btn btn-outline-secondary" id='project-settings-btn-cancel'> Abbrechen </button>
@@ -85,7 +89,7 @@ export default function Modal(type, backdrop, modal, showTrigger, url) {
                 document
                     .getElementById("project-settings-btn-cancel")
                     .addEventListener("click", this.hideBtn.bind(null,this.backdrop,this.modal));
-
+                    this.colorPickerLogic("color-select-input-update");
                 break;
 
             default:
@@ -118,5 +122,23 @@ export default function Modal(type, backdrop, modal, showTrigger, url) {
     this.hideBtn = function (backdrop, modal) {
         backdrop.style.display = "none";
         modal.style.display = "none";
+    };
+
+
+    this.colorPickerLogic = function (inputElement){
+        let colorSelectors = document.querySelectorAll('.color-select-item');
+        colorSelectors.forEach(function (e){
+
+            e.addEventListener('click', function (){
+                const colorImput = document.getElementById(inputElement);
+                colorImput.value =  e.getAttribute("data-color");
+                colorSelectors.forEach(function (h){
+                    if(h != e){
+                        h.classList.remove("active-color");
+                    }
+                });
+                e.classList.add("active-color");
+            })
+        });
     };
 }
