@@ -182,7 +182,8 @@ body{
 
 #modal-container-project,
 #modal-container-task,
-#modal-container-confirm{
+#modal-container-confirm,
+#modal-container-project-settings{
   z-index: 2050;
   width: 55%;
   height: 300px;

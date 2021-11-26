@@ -70,11 +70,11 @@
                     </div>
                 </a>
                 <div id="project-btn-container">
-                    <a href="#" id="settings-btn">
+                    <div th:id="${'/configProject' + projectEntry.id}" class="project-settings-btn" style="display:flex; justify-content:center; align-items:center;width:30px; height:30px; cursor: pointer">
                         <img src="/icons/settings_white_24dp.svg" alt="#" />
-                    </a>
+                    </div>
 
-                        <div th:id="${projectEntry.id}" class="project-delete-btn" style="display:flex; justify-content:center; align-items:center;width:30px; height:30px; cursor: pointer">
+                        <div th:id="${'/deleteProject' + projectEntry.id}" class="project-delete-btn" style="display:flex; justify-content:center; align-items:center;width:30px; height:30px; cursor: pointer">
                             <img alt="#" src="icons/delete_white_24dp.svg">
                         </div>
                 </div>
@@ -91,6 +91,7 @@
 
 <div id="modal-backdrop"></div>
 <div id="modal-container-project"></div>
+<div id="modal-container-project-settings"></div>
 <div id="modal-container-task"></div>
 <div id="modal-container-confirm"></div>
 </body>
