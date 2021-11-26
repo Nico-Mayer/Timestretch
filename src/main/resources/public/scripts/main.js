@@ -7,7 +7,6 @@ const modalC = document.querySelector("#modal-container-confirm");
 const modalS = document.querySelector("#modal-container-project-settings");
 const addProjectBtn = document.getElementById("add-project-btn");
 const addTaskBtn = document.getElementById("add-task-btn");
-
 const deleteBtnArray = document.querySelectorAll(".project-delete-btn");
 const settingsBtnArray = document.querySelectorAll(".project-settings-btn");
 const projectModal = new Modal(
