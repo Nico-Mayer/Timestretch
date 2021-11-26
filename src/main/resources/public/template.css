@@ -179,7 +179,10 @@ body{
   animation-name: fadein;
   animation-duration: 0.5s;
 }
-#modal-container-project {
+
+#modal-container-project,
+#modal-container-task,
+#modal-container-confirm{
   z-index: 2050;
   width: 55%;
   height: 300px;
@@ -194,36 +197,7 @@ body{
   animation-name: topdownFade;
   animation-duration: 0.5s;
 }
-#modal-container-task {
-  z-index: 2050;
-  width: 55%;
-  height: 300px;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background-color: rgb(248, 248, 248);
-  box-shadow: 1px 1px 6px rgba(65, 65, 65, 0.495);
-  border-radius: 7px;
-  display: none;
-  animation-name: topdownFade;
-  animation-duration: 0.5s;
-}
-#modal-container-confirm {
-  z-index: 2050;
-  width: 55%;
-  height: 300px;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background-color: rgb(248, 248, 248);
-  box-shadow: 1px 1px 6px rgba(65, 65, 65, 0.495);
-  border-radius: 7px;
-  display: none;
-  animation-name: topdownFade;
-  animation-duration: 0.5s;
-}
+
 .form-container {
   margin: 20px;
 }
