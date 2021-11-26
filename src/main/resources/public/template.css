@@ -174,8 +174,10 @@ body{
   z-index: 2000;
   height: 100vh;
   width: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.7);
   display: none;
+  animation-name: fadein;
+  animation-duration: 0.5s;
 }
 #modal-container-project {
   z-index: 2050;
@@ -189,6 +191,8 @@ body{
   box-shadow: 1px 1px 6px rgba(65, 65, 65, 0.495);
   border-radius: 7px;
   display: none;
+  animation-name: topdownFade;
+  animation-duration: 0.5s;
 }
 #modal-container-task {
   z-index: 2050;
@@ -202,6 +206,8 @@ body{
   box-shadow: 1px 1px 6px rgba(65, 65, 65, 0.495);
   border-radius: 7px;
   display: none;
+  animation-name: topdownFade;
+  animation-duration: 0.5s;
 }
 #modal-container-confirm {
   z-index: 2050;
@@ -215,6 +221,8 @@ body{
   box-shadow: 1px 1px 6px rgba(65, 65, 65, 0.495);
   border-radius: 7px;
   display: none;
+  animation-name: topdownFade;
+  animation-duration: 0.5s;
 }
 .form-container {
   margin: 20px;
@@ -222,4 +230,16 @@ body{
 
 #project-nav-link{
   padding-left: 10px;
+}
+
+@keyframes fadein {
+  from {opacity: 0;}
+  to {opacity: 100}
+}
+
+@keyframes topdownFade {
+  from {top: 0;
+    opacity: 0;}
+  to {top: 50%;
+    opacity: 100}
 }
