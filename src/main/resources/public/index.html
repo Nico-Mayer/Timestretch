@@ -30,7 +30,7 @@
         </div>
         <hr class="text-light">
         <ul class="list-group list-group-flush">
-            <li class="nav-item"><a href="/"  class="nav-link text-white general-nav-links"><img src="icons/home_white_24dp.svg" class="icon-svg" alt="">Home</a></li>
+            <li class="nav-item"><a href="/" data-link="navlink" class="nav-link text-white general-nav-links"><img src="icons/home_white_24dp.svg" class="icon-svg" alt="">Home</a></li>
             <hr class="text-light">
             <li class="nav-item" th:each="projectEntry : ${projectEntrys}" id="project-nav-link">
                 <a class="nav-link text-white general-nav-links" data-link="navlink" th:href="@{/project{projectID}(projectID = ${projectEntry.id})}">
