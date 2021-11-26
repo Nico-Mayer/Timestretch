@@ -13,7 +13,7 @@
             integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
             crossorigin="anonymous"
     />
-    <script src="scripts/navigation.js"></script>
+    <script src="scripts/navigation.js" defer></script>
     <link rel="stylesheet" href="template.css" />
     <script type="module" src="scripts/main.js"></script>
     <title>Timestretch</title>
@@ -30,10 +30,10 @@
         </div>
         <hr class="text-light">
         <ul class="list-group list-group-flush">
-            <li class="nav-item"><a href="/" class="nav-link text-white"><img src="icons/home_white_24dp.svg" class="icon-svg" alt="">Home</a></li>
+            <li class="nav-item"><a href="/" class="nav-link text-white" data-link='navlink'><img src="icons/home_white_24dp.svg" class="icon-svg" alt="">Home</a></li>
             <hr class="text-light">
-            <li class="nav-item" th:each="projectEntry : ${projectEntrys}" id="project-nav-link">
-                <a class="nav-link text-white"  th:href="@{/project{projectID}(projectID = ${projectEntry.id})}">
+            <li class="nav-item" th:each="projectEntry : ${projectEntrys}" id="project-nav-link" >
+                <a class="nav-link text-white" data-link='navlink' th:href="@{/project{projectID}(projectID = ${projectEntry.id})}">
                     <img src="icons/folder_white_24dp.svg">
                     <span th:text="${projectEntry.name}" style="padding-left: 10px"></span>
                 </a>

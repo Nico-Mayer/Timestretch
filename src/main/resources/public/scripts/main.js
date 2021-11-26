@@ -39,7 +39,7 @@ if(addProjectBtn !== null){
 }
 if(addTaskBtn !== null){
     const projectID = window.location.href.substr(29); // Verbesserung suchen
-    console.log(projectID);
+    //console.log(projectID);
     const taskModal = new Modal("task", backdrop,modalT,addTaskBtn, "/addNewTask"+projectID);
     taskModal.set();
 }
