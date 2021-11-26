@@ -60,6 +60,7 @@
                     <div style="width: 130px"></div>
                 </div>
                 <div id="task-container" class="container d-flex flex-column">
+                    <h2 th:if="${taskEntrys.isEmpty()}">No Tasks added</h2>
                     <ul>
                         <div  id="task"  class="bg-dark text-light" th:each="task : ${taskEntrys}">
                             <p th:text="${task.name}"></p>

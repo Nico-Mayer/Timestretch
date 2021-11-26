@@ -58,6 +58,7 @@
 
         <div id="project-container">
 
+            <h2 th:if="${projectEntrys.isEmpty()}">No Projects added</h2>
             <div id="project"  th:each="projectEntry : ${projectEntrys}" th:style="'background-color: ' + ${projectEntry.color}">
                 <a th:href="@{/project{projectID}(projectID = ${projectEntry.id})}" id="project-link" class="text-light">
                     <div id="project-content">
