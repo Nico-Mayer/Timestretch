@@ -33,7 +33,7 @@
             <li class="nav-item"><a href="/" class="nav-link text-white" data-link='navlink'><img src="icons/home_white_24dp.svg" class="icon-svg" alt="">Home</a></li>
             <hr class="text-light">
             <li class="nav-item" th:each="projectEntry : ${projectEntrys}" id="project-nav-link" >
-                <a class="nav-link text-white" data-link='navlink' th:href="@{/project{projectID}(projectID = ${projectEntry.id})}">
+                <a class="nav-link text-white" data-link='navlink' th:href="@{/project{projectID}(projectID = ${projectEntry.projectId})}">
                     <img src="icons/folder_white_24dp.svg">
                     <span th:text="${projectEntry.name}" style="padding-left: 10px"></span>
                 </a>

@@ -33,7 +33,7 @@
             <li class="nav-item"><a href="/" data-link="navlink" class="nav-link text-white general-nav-links"><img src="icons/home_white_24dp.svg" class="icon-svg" alt="">Home</a></li>
             <hr class="text-light">
             <li class="nav-item" th:each="projectEntry : ${projectEntrys}" id="project-nav-link">
-                <a class="nav-link text-white general-nav-links" data-link="navlink" th:href="@{/project{projectID}(projectID = ${projectEntry.id})}">
+                <a class="nav-link text-white general-nav-links" data-link="navlink" th:href="@{/project{projectID}(projectID = ${projectEntry.projectId})}">
                     <img src="icons/folder_white_24dp.svg">
                     <span th:text="${projectEntry.name}" style="padding-left: 10px"></span>
                 </a>
@@ -59,23 +59,23 @@
 
         <div id="project-container">
 
-            <h2 th:if="${projectEntrys.isEmpty()}">No Projects added</h2>
+
             <div id="project"  th:each="projectEntry : ${projectEntrys}" th:style="'background-color: ' + ${projectEntry.color}">
-                <a th:href="@{/project{projectID}(projectID = ${projectEntry.id})}" id="project-link" class="text-light">
+                <a th:href="@{/project{projectID}(projectID = ${projectEntry.projectId})}" id="project-link" class="text-light">
                     <div id="project-content">
                         <p id="project-title" th:text="${projectEntry.name}"></p>
                         <div id="projects-time-task-container">
                             <p id="project-time" th:text="${projectEntry.totalTime} + ' min'"></p>
-                            <p id="project-tasks" th:text="'Open Tasks: ' + ${projectEntry.openTasks}"></p>
+                            <p id="project-tasks" th:text="'Open Tasks:&emsp;' + ${projectEntry.openTasks}"></p>
                         </div>
                     </div>
                 </a>
                 <div id="project-btn-container">
-                    <div th:id="${'/configProject' + projectEntry.id}" class="project-settings-btn" style="display:flex; justify-content:center; align-items:center;width:30px; height:30px; cursor: pointer">
+                    <div th:id="${'/configProject' + projectEntry.projectId}" class="project-settings-btn" style="display:flex; justify-content:center; align-items:center;width:30px; height:30px; cursor: pointer">
                         <img src="/icons/settings_white_24dp.svg" alt="#" />
                     </div>
 
-                        <div th:id="${'/deleteProject' + projectEntry.id}" class="project-delete-btn" style="display:flex; justify-content:center; align-items:center;width:30px; height:30px; cursor: pointer">
+                        <div th:id="${'/deleteProject' + projectEntry.projectId}" class="project-delete-btn" style="display:flex; justify-content:center; align-items:center;width:30px; height:30px; cursor: pointer">
                             <img alt="#" src="icons/delete_white_24dp.svg">
                         </div>
                 </div>
