@@ -34,7 +34,7 @@ export default function Modal(type, backdrop, modal, showTrigger, url) {
                 document
                     .getElementById("project-btn-cancel")
                     .addEventListener("click", this.hideBtn.bind(null,this.backdrop,this.modal));
-                    this.colorPickerLogic("color-select-input-new");
+                this.colorPickerLogic("color-select-input-new");
 
 
                 break;
@@ -89,7 +89,7 @@ export default function Modal(type, backdrop, modal, showTrigger, url) {
                 document
                     .getElementById("project-settings-btn-cancel")
                     .addEventListener("click", this.hideBtn.bind(null,this.backdrop,this.modal));
-                    this.colorPickerLogic("color-select-input-update");
+                this.colorPickerLogic("color-select-input-update");
                 break;
 
             default:

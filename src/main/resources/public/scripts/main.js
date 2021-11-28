@@ -21,6 +21,7 @@ const projectModal = new Modal(
 if (deleteBtnArray !== null){
     deleteBtnArray.forEach(function(e){
         e.addEventListener("click", function(){
+            event.stopPropagation();
             let deleteModal = new Modal("", backdrop, modalC, e, e.id)
             deleteModal.set();
         })
@@ -29,6 +30,7 @@ if (deleteBtnArray !== null){
 if (settingsBtnArray !== null){
     settingsBtnArray.forEach(function(e){
         e.addEventListener("click", function(){
+            event.stopPropagation();
             let settingsModal = new Modal("settings", backdrop, modalS, e, e.id)
             settingsModal.set();
         })
@@ -43,5 +45,3 @@ if(addTaskBtn !== null){
     const taskModal = new Modal("task", backdrop,modalT,addTaskBtn, "/addNewTask"+projectID);
     taskModal.set();
 }
-
-

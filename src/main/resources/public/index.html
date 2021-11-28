@@ -18,36 +18,57 @@
 
     <title>Timestretch</title>
 </head>
-<body>
+<body class="bg-light">
 <div id="wrapper">
     <!-- SIDEBAR -->
-    <div id="sidebar" class="bg-dark">
-        <div id="logo">
-            <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
-                <img id="logo-svg" src="logo.svg" width="32" height="32">
-                <span class="fs-4 text-light">Timestretch</span>
-            </a>
-        </div>
-        <hr class="text-light">
-        <ul class="list-group list-group-flush">
-            <li class="nav-item"><a href="/" data-link="navlink" class="nav-link text-white general-nav-links"><img src="icons/home_white_24dp.svg" class="icon-svg" alt="">Home</a></li>
-            <hr class="text-light">
-            <li class="nav-item" th:each="projectEntry : ${projectEntrys}" id="project-nav-link">
-                <a class="nav-link text-white general-nav-links" data-link="navlink" th:href="@{/project{projectID}(projectID = ${projectEntry.projectId})}">
-                    <img src="icons/folder_white_24dp.svg">
-                    <span th:text="${projectEntry.name}" style="padding-left: 10px"></span>
+    <nav id="nav" class="bg-dark">
+        <ul id="nav-list">
+            <li class="nav-logo" >
+                <a class="nav-link logo" href="/">
+                    <svg id="logo-svg" width="100%" height="100%" viewBox="0 0 1000 1000" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/">
+                        <path d="M0 0h24v24H0z" fill="none"/>
+                        <path d="M1000,224.192C1000,100.374 899.626,0 775.808,0L224.192,0C100.374,0 0,100.374 -0,224.192L-0,775.808C0,899.626 100.374,1000 224.192,1000L775.808,1000C899.626,1000 1000,899.626 1000,775.808L1000,224.192ZM662.887,742.157C627.926,742.157 598.438,735.561 574.425,722.37C550.411,709.179 532.224,691.171 519.864,668.348C507.504,645.525 501.324,619.246 501.324,589.513L585.549,589.513C585.549,601.239 588.286,612.127 593.759,622.178C599.233,632.228 607.62,640.29 618.921,646.362C630.221,652.434 644.877,655.471 662.887,655.471C679.131,655.471 692.727,652.958 703.675,647.933C714.622,642.907 722.921,635.893 728.571,626.889C734.222,617.885 737.047,607.521 737.047,595.795C737.047,581.138 731.75,569.517 721.155,560.932C710.561,552.347 693.434,546.798 669.773,544.286L640.639,541.145C602.146,537.376 571.423,523.137 548.469,498.43C525.515,473.722 514.037,441.057 514.037,400.436C514.037,371.122 519.953,345.786 531.783,324.428C543.613,303.071 560.122,286.634 581.311,275.117C602.5,263.601 627.573,257.843 656.53,257.843C686.9,257.843 712.945,264.02 734.663,276.374C756.381,288.728 773.067,306.107 784.721,328.511C796.375,350.916 802.201,377.194 802.201,407.346L717.447,407.346C717.447,396.039 715.152,385.674 710.561,376.252C705.97,366.829 699.172,359.187 690.167,353.324C681.162,347.461 669.95,344.529 656.53,344.529C643.817,344.529 633.135,347.042 624.483,352.067C615.831,357.093 609.386,363.898 605.148,372.483C600.91,381.068 598.792,390.385 598.792,400.436C598.792,413.418 602.676,424.725 610.445,434.357C618.214,443.989 630.927,449.642 648.585,451.317L678.249,454.458C706.5,457.39 731.396,464.613 752.938,476.13C774.48,487.646 791.342,503.35 803.526,523.242C815.709,543.134 821.801,567.318 821.801,595.795C821.801,625.109 815.356,650.759 802.466,672.745C789.577,694.731 771.301,711.796 747.641,723.94C723.98,736.085 695.729,742.157 662.887,742.157ZM286.79,361.49L178.199,361.49L178.199,271.662L482.784,271.662L482.784,361.49L373.663,361.49L373.663,730.222L286.79,730.222L286.79,361.49Z"/>
+                    </svg>
+                    <p id="nav-p-logo">Timestretch</p>
+                </a>
+            </li>
+            <li class="nav-item-break"><hr class="text-light"></li>
+
+            <ul class="overflowlist">
+                <li class="nav-item">
+                    <a class="nav-link" href="/" data-link="navlink">
+                        <svg class="icon-svg" xmlns="http://www.w3.org/2000/svg" height="48px" viewBox="0 0 24 24" width="48px" fill="#FFFFFF"><path d="M0 0h24v24H0z" fill="none"/><path d="M20.38 8.57l-1.23 1.85a8 8 0 0 1-.22 7.58H5.07A8 8 0 0 1 15.58 6.85l1.85-1.23A10 10 0 0 0 3.35 19a2 2 0 0 0 1.72 1h13.85a2 2 0 0 0 1.74-1 10 10 0 0 0-.27-10.44zm-9.79 6.84a2 2 0 0 0 2.83 0l5.66-8.49-8.49 5.66a2 2 0 0 0 0 2.83z"/></svg>
+                        <p class="nav-p">Dashboard</p>
+                    </a>
+                </li>
+                <li class="nav-item"  th:each="projectEntry : ${projectEntrys}" id="project-nav-link">
+                    <a class="nav-link" data-link="navlink" th:href="@{/project{projectID}(projectID = ${projectEntry.projectId})}">
+                        <svg class="icon-svg" xmlns="http://www.w3.org/2000/svg" height="48px" viewBox="0 0 24 24" width="48px" fill="#FFFFFF"><path d="M0 0h24v24H0z" fill="none"/><path d="M10 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2h-8l-2-2z"/></svg>
+                        <p class="nav-p" th:text="${projectEntry.name}"></p>
+                    </a>
+                </li>
+                <li class="nav-item add-project-btn">
+                    <a class="nav-link" id="add-project-btn">
+                        <svg  xmlns="http://www.w3.org/2000/svg" height="48px" viewBox="0 0 24 24" width="48px" fill="#FFFFFF"><path d="M0 0h24v24H0z" fill="none"/><path d="M13 7h-2v4H7v2h4v4h2v-4h4v-2h-4V7zm-1-5C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/></svg>
+                    </a>
+                </li>
+
+                <li id="abstand"></li>
+            </ul>
+
+
+            <li class="nav-item-break"><hr class="text-light"></li>
+            <li class="nav-item user" >
+                <a class="nav-link user" data-link="navlink" href="#">
+                    <svg class="icon-svg" xmlns="http://www.w3.org/2000/svg" height="48px" viewBox="0 0 24 24" width="48px" fill="#FFFFFF"><path d="M0 0h24v24H0z" fill="none"/><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+                    <p class="nav-p">User</p>
                 </a>
             </li>
         </ul>
-
-        <div class="align-self-end text-light" id="user">
-            <hr class="text-light">
-            <a href="#" class="text-decoration-none text-light"><img src="icons/account_circle_white_24dp.svg" class="icon-svg">User</a>
-        </div>
-    </div>
+    </nav>
 
     <!-- CONTENT -->
-    <div id="content" class="bg-light d-flex flex-column">
+    <div id="content"   class="d-flex flex-column">
         <div id="header-content-container">
             <div id="new-entry-btn-container">
                 <a class="btn btn-primary" id="add-project-btn">
@@ -60,8 +81,7 @@
         <div id="project-container">
 
 
-            <div id="project"  th:each="projectEntry : ${projectEntrys}" th:style="'background-color: ' + ${projectEntry.color}">
-                <a th:href="@{/project{projectID}(projectID = ${projectEntry.projectId})}" id="project-link" class="text-light">
+            <div class="text-light" id="project" th:onclick="|window.location.href='/project${projectEntry.projectId}'|" th:each="projectEntry : ${projectEntrys}" th:style="'background-color: ' + ${projectEntry.color}">
                     <div id="project-content">
                         <p id="project-title" th:text="${projectEntry.name}"></p>
                         <div id="projects-time-task-container">
@@ -69,14 +89,13 @@
                             <p id="project-tasks" th:text="'Open Tasks:&emsp;' + ${projectEntry.openTasks}"></p>
                         </div>
                     </div>
-                </a>
                 <div id="project-btn-container">
                     <div th:id="${'/configProject' + projectEntry.projectId}" class="project-settings-btn" style="display:flex; justify-content:center; align-items:center;width:30px; height:30px; cursor: pointer">
-                        <img src="/icons/settings_white_24dp.svg" alt="#" />
+                        <svg class="setting-svg" xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24" height="48px" viewBox="0 0 24 24" width="48px" fill="#FFFFFF"><g><path d="M0,0h24v24H0V0z" fill="none"/><path d="M19.14,12.94c0.04-0.3,0.06-0.61,0.06-0.94c0-0.32-0.02-0.64-0.07-0.94l2.03-1.58c0.18-0.14,0.23-0.41,0.12-0.61 l-1.92-3.32c-0.12-0.22-0.37-0.29-0.59-0.22l-2.39,0.96c-0.5-0.38-1.03-0.7-1.62-0.94L14.4,2.81c-0.04-0.24-0.24-0.41-0.48-0.41 h-3.84c-0.24,0-0.43,0.17-0.47,0.41L9.25,5.35C8.66,5.59,8.12,5.92,7.63,6.29L5.24,5.33c-0.22-0.08-0.47,0-0.59,0.22L2.74,8.87 C2.62,9.08,2.66,9.34,2.86,9.48l2.03,1.58C4.84,11.36,4.8,11.69,4.8,12s0.02,0.64,0.07,0.94l-2.03,1.58 c-0.18,0.14-0.23,0.41-0.12,0.61l1.92,3.32c0.12,0.22,0.37,0.29,0.59,0.22l2.39-0.96c0.5,0.38,1.03,0.7,1.62,0.94l0.36,2.54 c0.05,0.24,0.24,0.41,0.48,0.41h3.84c0.24,0,0.44-0.17,0.47-0.41l0.36-2.54c0.59-0.24,1.13-0.56,1.62-0.94l2.39,0.96 c0.22,0.08,0.47,0,0.59-0.22l1.92-3.32c0.12-0.22,0.07-0.47-0.12-0.61L19.14,12.94z M12,15.6c-1.98,0-3.6-1.62-3.6-3.6 s1.62-3.6,3.6-3.6s3.6,1.62,3.6,3.6S13.98,15.6,12,15.6z"/></g></svg>
                     </div>
 
                         <div th:id="${'/deleteProject' + projectEntry.projectId}" class="project-delete-btn" style="display:flex; justify-content:center; align-items:center;width:30px; height:30px; cursor: pointer">
-                            <img alt="#" src="icons/delete_white_24dp.svg">
+                            <svg class="trashcan-svg" xmlns="http://www.w3.org/2000/svg" height="48px" viewBox="0 0 24 24" width="48px" fill="#FFFFFF"><path d="M0 0h24v24H0z" fill="none"/><path d="M0 0h24v24H0V0z" fill="none"/><path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zm2.46-7.12l1.41-1.41L12 12.59l2.12-2.12 1.41 1.41L13.41 14l2.12 2.12-1.41 1.41L12 15.41l-2.12 2.12-1.41-1.41L10.59 14l-2.13-2.12zM15.5 4l-1-1h-5l-1 1H5v2h14V4z"/></svg>
                         </div>
                 </div>
             </div>
