@@ -40,14 +40,12 @@ body{
   flex-direction: row;
   height: 100%;
 }
-#tasks-container{
+#task-container{
   display: flex;
   flex-direction: column;
   flex-grow: 1;
 }
 #done-sidebar{
-  position: absolute;
-  right: 0;
   transition: 0.6s;
   display: flex;
   flex-direction: column;
@@ -57,7 +55,7 @@ body{
 }
 .collapsed{
   transition: 0.6s;
-  right: -20rem!important;
+  width: 0px!important;
 }
 .btn-collapsed-mode{
   transition: 0.6s;
@@ -139,6 +137,17 @@ body{
   flex-direction: column;
   justify-content: center;
 }
+.dummy-project{
+  display: flex!important;
+  flex-direction: column!important;
+  justify-content: center;
+  align-items: center;
+  box-shadow: none;
+  background-color: lightgray;
+  border: dashed 1px darkgray;
+  opacity: 0.5;
+}
+
 
 #project-btn-container {
   width: 40px;
@@ -163,6 +172,7 @@ body{
 
   font-size: x-large;
 }
+
 
 #projects-time-task-container {
   display: flex;

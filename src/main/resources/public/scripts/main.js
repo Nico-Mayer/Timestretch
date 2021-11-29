@@ -5,17 +5,26 @@ const modalP = document.querySelector("#modal-container-project");
 const modalT = document.querySelector("#modal-container-task");
 const modalC = document.querySelector("#modal-container-confirm");
 const modalS = document.querySelector("#modal-container-project-settings");
-const addProjectBtn = document.getElementById("add-project-btn");
+
 const addTaskBtn = document.getElementById("add-task-btn");
 const deleteBtnArray = document.querySelectorAll(".project-delete-btn");
 const settingsBtnArray = document.querySelectorAll(".project-settings-btn");
-const projectModal = new Modal(
-    "project",
-    backdrop,
-    modalP,
-    addProjectBtn,
-    "/addProject"
-);
+
+const addProjectBtnArray = document.querySelectorAll(".addProjectBtn");
+
+
+if(addProjectBtnArray != null){
+    addProjectBtnArray.forEach(function (e){
+        let projectModalArray = (new Modal(
+            "project",
+            backdrop,
+            modalP,
+            e,
+            "/addProject"
+        ));
+            projectModalArray.set();
+    })
+}
 
 
 if (deleteBtnArray !== null){
@@ -27,6 +36,7 @@ if (deleteBtnArray !== null){
         })
     })
 }
+
 if (settingsBtnArray !== null){
     settingsBtnArray.forEach(function(e){
         e.addEventListener("click", function(){
@@ -36,9 +46,7 @@ if (settingsBtnArray !== null){
         })
     })
 }
-if(addProjectBtn !== null){
-    projectModal.set();
-}
+
 if(addTaskBtn !== null){
     const projectID = window.location.href.substr(29); // Verbesserung suchen
     //console.log(projectID);

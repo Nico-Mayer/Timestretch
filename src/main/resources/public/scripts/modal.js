@@ -105,6 +105,7 @@ export default function Modal(type, backdrop, modal, showTrigger, url) {
                     .getElementById("confirm-btn-cancel")
                     .addEventListener("click", this.hideBtn.bind(null,this.backdrop,this.modal));
         }
+
         this.showTrigger.addEventListener(
             "click",
             this.show.bind(null, this.backdrop, this.modal)
@@ -114,7 +115,7 @@ export default function Modal(type, backdrop, modal, showTrigger, url) {
     this.show = function(backdrop, modal) {
         backdrop.style.display = "block";
         modal.style.display = "block";
-        backdrop.addEventListener("click", function() {
+        backdrop.addEventListener("click", function(event) {
             backdrop.style.display = "none";
             modal.style.display = "none";
         });

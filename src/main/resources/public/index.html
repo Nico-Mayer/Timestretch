@@ -48,7 +48,7 @@
                     </a>
                 </li>
                 <li class="nav-item add-project-btn">
-                    <a class="nav-link" id="add-project-btn">
+                    <a class="nav-link addProjectBtn">
                         <svg  xmlns="http://www.w3.org/2000/svg" height="48px" viewBox="0 0 24 24" width="48px" fill="#FFFFFF"><path d="M0 0h24v24H0z" fill="none"/><path d="M13 7h-2v4H7v2h4v4h2v-4h4v-2h-4V7zm-1-5C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/></svg>
                     </a>
                 </li>
@@ -89,7 +89,16 @@
             <div id="project-content-view">
                 <div id="wrapper-content-task-view">
                     <div id="tasks-wrapper">
-                        <div id="tasks-container">Tasks</div>
+
+                        <div id="task-container">
+                            <ul>
+                                <div  id="task"  class="bg-dark text-light" th:each="task : ${taskEntrys}">
+                                    <p th:text="${task.name}"></p>
+                                    <span th:text="${task.description}"></span>
+                                </div>
+                            </ul>
+                        </div>
+
 
                         <div id="done-sidebar">
                             DONE CONTAINER
@@ -105,8 +114,8 @@
 
             <div id="home-content-view">
                 <div id="project-container">
-                    <div class="text-light" id="project" th:onclick="|window.location.href='/project${projectEntry.projectId}'|" th:each="projectEntry : ${projectEntrys}" th:style="'background-color: ' + ${projectEntry.color}">
-                        <div id="project-content">
+                    <div class="text-light" id="project"  th:each="projectEntry : ${projectEntrys}" th:style="'background-color: ' + ${projectEntry.color}">
+                        <div id="project-content" th:onclick="|window.location.href='/project${projectEntry.projectId}'|">
                             <p id="project-title" th:text="${projectEntry.name}"></p>
                             <div id="projects-time-task-container">
                                 <p id="project-time" th:text="${projectEntry.totalTime} + ' min'"></p>
@@ -122,6 +131,10 @@
                                 <svg class="trashcan-svg" xmlns="http://www.w3.org/2000/svg" height="48px" viewBox="0 0 24 24" width="48px" fill="#FFFFFF"><path d="M0 0h24v24H0z" fill="none"/><path d="M0 0h24v24H0V0z" fill="none"/><path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zm2.46-7.12l1.41-1.41L12 12.59l2.12-2.12 1.41 1.41L13.41 14l2.12 2.12-1.41 1.41L12 15.41l-2.12 2.12-1.41-1.41L10.59 14l-2.13-2.12zM15.5 4l-1-1h-5l-1 1H5v2h14V4z"/></svg>
                             </div>
                         </div>
+                    </div>
+                    <div class="dummy-project addProjectBtn" id="project">
+                        <svg xmlns="http://www.w3.org/2000/svg" height="48px" viewBox="0 0 24 24" width="48px" fill="#FFFFFF"><path d="M0 0h24v24H0z" fill="none"/><path d="M13 7h-2v4H7v2h4v4h2v-4h4v-2h-4V7zm-1-5C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/></svg>
+                        <span>Add New Project</span>
                     </div>
 
                 </div>
