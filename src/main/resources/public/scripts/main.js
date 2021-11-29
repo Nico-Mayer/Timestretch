@@ -45,3 +45,21 @@ if(addTaskBtn !== null){
     const taskModal = new Modal("task", backdrop,modalT,addTaskBtn, "/addNewTask"+projectID);
     taskModal.set();
 }
+
+// Content Switcher for Single Page use
+const path = window.location.pathname;
+let homeContentView = document.getElementById("home-content-view");
+let projectContetView = document.getElementById("project-content-view")
+if(path == "/"){
+    projectContetView.style.display = "none";
+}else{
+    homeContentView.style.display = "none";
+}
+
+
+const collapseBtn = document.getElementById("done-container-collapse-btn");
+const doneSidebar = document.getElementById("done-sidebar")
+collapseBtn.addEventListener('click', function(){
+        doneSidebar.classList.toggle("collapsed");
+        collapseBtn.classList.toggle("btn-collapsed-mode");
+})

@@ -10,10 +10,7 @@ body{
 
 #content {
   position: absolute;
-  padding-left: 296px;
-  padding-top: 16px;
-  padding-right: 16px;
-  padding-bottom: 16px;
+  padding-left: 270px;
   overflow: auto;
   width: 100%;
   height: 100vh;
@@ -49,19 +46,45 @@ body{
   flex-grow: 1;
 }
 #done-sidebar{
+  position: absolute;
+  right: 0;
+  transition: 0.6s;
   display: flex;
-  width: 195px;
-  justify-content: center;
-  box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+  flex-direction: column;
+  width: 20rem;
+  height: 100%;
+  border-left: 1px solid lightgray;
+}
+.collapsed{
+  transition: 0.6s;
+  right: -20rem!important;
+}
+.btn-collapsed-mode{
+  transition: 0.6s;
+  transform: rotate(-180deg);
+  padding-left: 13px;
+}
+#collapse-arrow{
+ transform: rotate(180deg);
 }
 #done-container-collapse-btn{
-  position: absolute;
-  top: 50%;
-  right: 165px;
-  width: 60px;
-  height: 60px;
+  transition: 0.6s;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 10%;
+  left: -25px;
+  width: 50px!important;
+  height: 50px!important;
   border-radius: 50%;
-  background-color: chartreuse;
+}
+#done-container-collapse-btn:hover svg{
+  transition: 0.6s;
+  transform: scale(1.1) rotate(180deg);
+}
+#project-content-view{
+  height: 100vh;
 }
 
 #header-content-container{
@@ -228,17 +251,42 @@ body{
   transform: scale(1.2);
 }
 
-#head-bar{
+.head-bar{
+  z-index: 2;
+  position: sticky;
+  top: 0;
+  opacity: 0.9;
   display: flex;
   flex-direction: row;
   width: 100%;
-  height: 64px;
-  box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+  height: 3.5rem;
+  padding: 0.5rem 1rem;
+  align-items: center;
+  border-bottom: 1px solid lightgray;
+}
+.spacer{
+  flex-grow: 1;
+}
+.btn-wrapper{
+  width: 20rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.btn-wrapper svg{
+  width: 1.5rem;
+  cursor: pointer;
+}
+.btn-wrapper button{
+  background-color: chartreuse;
+  cursor: pointer;
+  opacity: 1;
 }
 
 /*---------------------------------------------------SIDEBAR----------------------------------------*/
 #nav {
-  z-index: 1;
+  z-index: 99;
   position: absolute !important;
   top: 0;
   left: 0;

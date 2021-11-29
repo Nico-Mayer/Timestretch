@@ -33,8 +33,8 @@ public class App {
             TasksMap.put("taskEntrys", getTaskEntrys(projectID));
             HashMap<String, List<Project>> ProjectsMap = new HashMap<>();
             ProjectsMap.put("projectEntrys", getProjectEntrys());
-           ctx.render("/public/project.html", TasksMap);
-           ctx.render("/public/project.html", ProjectsMap);
+           ctx.render("/public/index.html", TasksMap);
+           ctx.render("/public/index.html", ProjectsMap);
         });
         //------------------------------------------------TASKS---------------------------------------------------------
 
