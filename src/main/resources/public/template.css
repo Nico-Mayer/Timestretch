@@ -2,7 +2,6 @@
 
 html * {
   font-family: "Sora", sans-serif;
-
 }
 body{
 
@@ -93,15 +92,20 @@ body{
 
 
 
-#task{
+.task{
   width: 98%;
   height: 100px;
   border: 1px solid black;
   border-radius: 0.25rem;
   margin-top: 10px;
   margin-bottom: 10px;
+  cursor: pointer;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
 }
-
+.task:hover{
+  transition: 0.4s;
+  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+}
 
 
 /* CSS für Index.html BZW Home */
@@ -113,7 +117,7 @@ body{
   justify-items: center;
 }
 
-#project {
+.project {
   display: flex;
   flex-direction: row;
   width: 95%;
@@ -125,7 +129,7 @@ body{
   cursor: pointer;
   box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
 }
-#project:hover{
+.project:hover{
   transition: 0.4s;
   box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
 }
@@ -137,14 +141,14 @@ body{
   flex-direction: column;
   justify-content: center;
 }
-.dummy-project{
+.addDummy{
   display: flex!important;
   flex-direction: column!important;
   justify-content: center;
   align-items: center;
   box-shadow: none;
   background-color: lightgray;
-  border: dashed 1px darkgray;
+  border: dashed 1px darkgray!important;
   opacity: 0.5;
 }
 #addBtn{
@@ -156,6 +160,7 @@ body{
   width: 40px;
 }
 .trashcan-svg{
+  transition: 0.3s;
   transition: 0.3s;
 }
 

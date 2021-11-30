@@ -18,9 +18,9 @@ if(path === "/"){
     homeContentView.style.display = "none";
     document.getElementById("addBtn").classList.add("add-task-btn")
 }
+// Button Handler Area
+const addTaskBtnArray = document.querySelectorAll(".add-task-btn");
 
-const addTaskBtn = document.querySelector(".add-task-btn");
-console.log(addTaskBtn);
 const deleteBtnArray = document.querySelectorAll(".project-delete-btn");
 const settingsBtnArray = document.querySelectorAll(".project-settings-btn");
 const addProjectBtnArray = document.querySelectorAll(".addProjectBtn");
@@ -60,11 +60,13 @@ if (settingsBtnArray !== null){
     })
 }
 
-if(addTaskBtn !== null){
+if(addTaskBtnArray !== null){
     const projectID = window.location.href.substr(29); // Verbesserung suchen
-    //console.log(projectID);
-    const taskModal = new Modal("task", backdrop,modalT,addTaskBtn, "/addNewTask" + projectID);
-    taskModal.set();
+    addTaskBtnArray.forEach(function (e){
+        const taskModal = new Modal("task", backdrop,modalT,e, "/addNewTask" + projectID);
+        taskModal.set();
+    });
+
 }
 
 
