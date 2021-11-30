@@ -148,7 +148,7 @@ body{
   align-items: center;
   box-shadow: none;
   background-color: lightgray;
-  border: dashed 1px darkgray!important;
+  border: dashed 2px darkgray!important;
   opacity: 0.5;
 }
 #addBtn{

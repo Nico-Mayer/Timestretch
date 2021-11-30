@@ -47,6 +47,26 @@ public class App {
             ctx.redirect("/project" + projectId);
         });
 
+        // Task aus DB Löschen
+        app.post("/deleteTask{taskId}", ctx ->{
+           int taskId = Integer.parseInt(ctx.pathParam("taskId"));
+           int projectId = em.find(Task.class, taskId).getProject().getProjectId();
+           deleteTask(taskId);
+           ctx.redirect("project" + projectId);
+        });
+
+        // Task auf Done Setzen
+        app.get("/doneTask{taskId}", ctx ->{
+            System.out.println("in");
+            int taskId = Integer.parseInt(ctx.pathParam("taskId"));
+            int projectId = em.find(Task.class, taskId).getProject().getProjectId();
+            entityTransaction.begin();
+            Task task = em.find(Task.class, taskId);
+            task.setDone(1);
+            entityTransaction.commit();
+            ctx.redirect("project" + projectId);
+        });
+
         //------------------------------------------------PROJECTS------------------------------------------------------
 
         // Project Object zur Datenbank hinzufügen
@@ -108,6 +128,12 @@ public class App {
 
     }
     public static void deleteTask(int taskID){
+        Task task = em.find(Task.class, taskID);
+        entityTransaction.begin();
+        em.remove(task);
+        entityTransaction.commit();
+    }
+    public static void taskSetDone(int taskID){
 
     }
 

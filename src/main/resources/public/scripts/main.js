@@ -19,12 +19,36 @@ if(path === "/"){
     document.getElementById("addBtn").classList.add("add-task-btn")
 }
 // Button Handler Area
+// For Tasks
 const addTaskBtnArray = document.querySelectorAll(".add-task-btn");
+const deleteBtnArrayTask = document.querySelectorAll(".task-btn.delete-btn")
+const doneBtnArrayTask = document.querySelectorAll(".task-btn.done-btn");
 
-const deleteBtnArray = document.querySelectorAll(".project-delete-btn");
-const settingsBtnArray = document.querySelectorAll(".project-settings-btn");
+if(addTaskBtnArray !== null){
+    const projectID = window.location.href.substr(29); // Verbesserung suchen
+    addTaskBtnArray.forEach(function (e){
+        const taskModal = new Modal("task", backdrop,modalT,e, "/addNewTask" + projectID);
+        taskModal.set();
+    });
+}
+if(deleteBtnArrayTask !== null){
+    deleteBtnArrayTask.forEach(function (e){
+        let deleteModal = new Modal("", backdrop, modalC, e, e.id)
+        deleteModal.set();
+    })
+}
+if(doneBtnArrayTask !== null){
+    doneBtnArrayTask.forEach(function (e){
+        e.addEventListener('click',function (){
+            window.location.href = e.id;
+        })
+    })
+}
+
+// For Projects
+const deleteBtnArrayProject = document.querySelectorAll(".project-delete-btn");
+const settingsBtnArrayProject = document.querySelectorAll(".project-settings-btn");
 const addProjectBtnArray = document.querySelectorAll(".addProjectBtn");
-
 
 if(addProjectBtnArray != null){
     addProjectBtnArray.forEach(function (e){
@@ -40,8 +64,8 @@ if(addProjectBtnArray != null){
 }
 
 
-if (deleteBtnArray !== null){
-    deleteBtnArray.forEach(function(e){
+if (deleteBtnArrayProject !== null){
+    deleteBtnArrayProject.forEach(function(e){
         e.addEventListener("mouseover", function(){
             event.stopPropagation();
             let deleteModal = new Modal("", backdrop, modalC, e, e.id)
@@ -50,8 +74,8 @@ if (deleteBtnArray !== null){
     })
 }
 
-if (settingsBtnArray !== null){
-    settingsBtnArray.forEach(function(e){
+if (settingsBtnArrayProject !== null){
+    settingsBtnArrayProject.forEach(function(e){
         e.addEventListener("mouseover", function(){
             event.stopPropagation();
             let settingsModal = new Modal("settings", backdrop, modalS, e, e.id)
@@ -60,19 +84,8 @@ if (settingsBtnArray !== null){
     })
 }
 
-if(addTaskBtnArray !== null){
-    const projectID = window.location.href.substr(29); // Verbesserung suchen
-    addTaskBtnArray.forEach(function (e){
-        const taskModal = new Modal("task", backdrop,modalT,e, "/addNewTask" + projectID);
-        taskModal.set();
-    });
 
-}
-
-
-
-
-
+// Sidebar Collapse
 const collapseBtn = document.getElementById("done-container-collapse-btn");
 const doneSidebar = document.getElementById("done-sidebar")
 collapseBtn.addEventListener('click', function(){
