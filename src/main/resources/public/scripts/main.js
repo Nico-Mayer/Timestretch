@@ -42,7 +42,7 @@ if(addProjectBtnArray != null){
 
 if (deleteBtnArray !== null){
     deleteBtnArray.forEach(function(e){
-        e.addEventListener("click", function(){
+        e.addEventListener("mouseover", function(){
             event.stopPropagation();
             let deleteModal = new Modal("", backdrop, modalC, e, e.id)
             deleteModal.set();
@@ -52,7 +52,7 @@ if (deleteBtnArray !== null){
 
 if (settingsBtnArray !== null){
     settingsBtnArray.forEach(function(e){
-        e.addEventListener("click", function(){
+        e.addEventListener("mouseover", function(){
             event.stopPropagation();
             let settingsModal = new Modal("settings", backdrop, modalS, e, e.id)
             settingsModal.set();
