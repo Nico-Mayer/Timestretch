@@ -86,7 +86,7 @@ if (settingsBtnArrayProject !== null){
 
 
 // Sidebar Collapse
-const collapseBtn = document.getElementById("done-container-collapse-btn");
+const collapseBtn = document.getElementById("collapse-arrow");
 const doneSidebar = document.getElementById("done-sidebar")
 collapseBtn.addEventListener('click', function(){
         doneSidebar.classList.toggle("collapsed");

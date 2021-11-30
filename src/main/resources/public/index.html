@@ -108,13 +108,19 @@
 
 
                         <div id="done-sidebar">
-                            <div class="task bg-dark text-light" th:each="task : ${taskEntrys}" th:if="${task.done} != 0">
-                                <p th:text="${task.name}"></p>
-                                <span th:text="${task.description}"></span>
+                            <div id="collapse-btn-area">
+                                <div class="spacer" style="border-right:1px solid lightgray; display: flex; height:10%"></div>
+                                <div id="collapse-btn-container" >
+                                    <svg id="collapse-arrow" xmlns="http://www.w3.org/2000/svg" height="48px" viewBox="0 0 24 24" width="48px" fill="#FFFFFF"><path d="M0 0h24v24H0z" fill="none"/><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
+                                </div>
+                                <div class="spacer" style="border-right:1px solid lightgray; display: flex; height: 100%"></div>
                             </div>
-                            <div id="done-container-collapse-btn" class="bg-dark">
-                                <svg id="collapse-arrow" xmlns="http://www.w3.org/2000/svg" height="48px" viewBox="0 0 24 24" width="48px" fill="#FFFFFF"><path d="M0 0h24v24H0z" fill="none"/><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>
-                            </div>
+                            <ul id="done-container">
+                                <li id="headline">Finished Tasks</li>
+                                <li th:each="task : ${taskEntrys}" th:if="${task.done} != 0">
+                                    <span th:text="${task.name}"></span>
+                                </li>
+                            </ul>
                         </div>
                     </div>
                 </div>

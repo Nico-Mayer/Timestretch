@@ -46,40 +46,53 @@ body{
 }
 #done-sidebar{
   transition: 0.6s;
+  position: relative;
+  right: 0;
   display: flex;
-  flex-direction: column;
-  width: 20rem;
+  flex-direction: row;
+}
+#collapse-btn-area{
+  width: 45px;
   height: 100%;
-  border-left: 1px solid lightgray;
 }
 .collapsed{
   transition: 0.6s;
-  width: 0px!important;
+  right: -30rem!important;
+  padding: 0!important;
 }
 .btn-collapsed-mode{
   transition: 0.6s;
-  transform: rotate(-180deg);
-  padding-left: 13px;
+  transform: scaleX(-1)!important;
 }
 #collapse-arrow{
- transform: rotate(180deg);
-}
-#done-container-collapse-btn{
   transition: 0.6s;
-  position: relative;
+  width: 48px!important;
+  height: 48px!important;
+}
+#done-container#headline{
+  background-color: red;
+}
+#collapse-btn-container{
   display: flex;
-  justify-content: center;
-  align-items: center;
-  top: 10%;
-  left: -25px;
-  width: 50px!important;
-  height: 50px!important;
-  border-radius: 50%;
-}
-#done-container-collapse-btn:hover svg{
+  border-top-left-radius: 0.25rem;
+  border-bottom-left-radius: 0.25rem;
+  z-index: 1;
   transition: 0.6s;
-  transform: scale(1.1) rotate(180deg);
+  border-left: 1px solid lightgray;
+  border-bottom: 1px solid lightgray;
+  border-top: 1px solid lightgray;
+  cursor: pointer;
+  width: 100%;
 }
+#collapse-btn-container svg{
+  fill: #273136!important;
+}
+#collapse-btn-container:hover svg{
+  transition: 0.6s;
+  transform: scale(1.1);
+
+}
+
 #project-content-view{
   height: 100vh;
 }
@@ -88,6 +101,28 @@ body{
   min-height: 65px !important;
   display: flex;
   justify-content: space-between;
+}
+#done-container{
+  transition: 0.6s;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  flex-shrink: 0;
+  padding: 0 5px;
+  width: 30rem;
+  height: 100%;
+  overflow: hidden;
+}
+#done-container li{
+  display: flex;
+  border: #273136 1px solid;
+  border-radius: 1rem;
+  color: #273136;
+  height: 3rem!important;
+  margin-top: 0.5rem;
+  text-align: center;
+  justify-content: center;
 }
 
 
